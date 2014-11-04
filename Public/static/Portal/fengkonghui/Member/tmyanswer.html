@@ -1,0 +1,40 @@
+<extend name="Public/main" />
+<!-- content -->
+<block name="style">
+	<style type="text/css">
+		.user-info{ border-bottom: 1px solid #ccc; border-top: 1px solid #ccc; padding: 5px 0; line-height: 24px; margin: 10px 0}
+		.user-info a { color: #bc0000;}
+	</style>
+</block>
+<block name="body">
+		<div class="gr_data">
+			<div class="da_left">
+				<include file="Member:tcenter_nav" />
+			</div>
+			<div class="da_right">
+				<div class="member-nav">
+					<a href="{:U('Portal/member/tmyanswer',array('tab'=>'case','uid'=>$uid))}" <if condition="$Think.get.tab eq 'case'">class="nav-hover"</if>>案例</a>
+					<a href="{:U('Portal/member/tmyanswer',array('tab'=>'technology','uid'=>$uid))}" <if condition="$Think.get.tab eq 'technology'">class="nav-hover"</if>>技术</a>
+					<a href="{:U('Portal/member/tmyanswer',array('tab'=>'debate','uid'=>$uid))}" <if condition="$Think.get.tab eq 'debate'">class="nav-hover"</if>>辩论</a>
+				</div>
+				<div class="member-list">
+					<ul class="db clearfix">
+						<volist name="myanswer" id="vo">
+							<li class="myanswer1 pd">
+								<a href="{$vo.url}" target="_blank">{$vo.title}</a>
+							</li>
+							<li class="myanswer2">{$vo.message}</li>
+							<li class="myanswer3">{$vo.time}</li>
+						</volist>
+					</ul>
+					<div class="pages clearfix">
+					{$page}
+					</div>
+				</div>
+			</div>
+		</div>
+</block>
+<block name="script">
+	<script type="text/javascript">
+	</script>
+</block>

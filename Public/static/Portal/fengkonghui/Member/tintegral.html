@@ -1,0 +1,45 @@
+<extend name="Public/main" />
+<!-- content -->
+<block name="style">
+<style type="text/css">
+.user-info {
+	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	padding: 5px 0;
+	line-height: 24px;
+	margin: 10px 0
+}
+
+.user-info a {
+	color: #bc0000;
+}
+</style>
+</block>
+<block name="body">
+<div class="gr_data">
+	<div class="da_left">
+		<include file="Member:tcenter_nav" />
+	</div>
+	<div class="da_right">
+		<div class="member-nav">
+			<a href="{:U('member/tintegral',array('tab'=>'coin','uid'=>$uid))}"<if
+					condition="$Think.get.tab eq 'coin'">class="nav-hover"</if>>红途币</a> <a
+				href="{:U('member/tintegral',array('tab'=>'integral','uid'=>$uid))}"<if
+					condition="$Think.get.tab eq 'integral'">class="nav-hover"</if>>积分</a>
+		</div>
+		<div class="member-list">
+			<ul class="db clearfix">
+				<volist name="release" id="vo">
+				<li class="release1 pd"><a href="{$vo.url}" target="_blank">{$vo.title}</a>
+				</li>
+				<li class="release2">{$vo.time}</li>
+				</volist>
+			</ul>
+			<div class="pages clearfix">{$page}</div>
+		</div>
+	</div>
+</div>
+</block>
+<block name="script"> <script type="text/javascript">
+	
+</script> </block>

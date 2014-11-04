@@ -1,0 +1,14 @@
+<extend name="Public/main" />
+<block name="body">
+	<div class="zhuanti_show">
+		<div class="title">
+			<h2>{$_info.rev_title}</h2>
+		</div>
+		<p>
+			{:htmlspecialchars_decode($_info['rev_content'])}
+		</p>
+		<div class="time">
+			日期：{$_info.rev_create_time|date="Y-m-d",###}
+		</div>
+	</div>
+</block>

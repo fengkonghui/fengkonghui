@@ -1,0 +1,57 @@
+<extend name="Public/main" />
+<!-- content -->
+<block name="style">
+	<style type="text/css">
+		.user-info{ border-bottom: 1px solid #ccc; border-top: 1px solid #ccc; padding: 5px 0; line-height: 24px;}
+		.user-info a { color: #bc0000;}
+	</style>
+</block>
+<block name="body">
+	<div class="gr_data">
+		<div class="da_left">
+			<include file="Member:center_nav" />
+		</div>
+		<div class="da_right" style="overflow: hidden;padding-bottom: 10px;">
+			<div class="center-group">
+				<div class="title">
+					<h2>创建小组</h2>
+				</div>
+				<form class="build-group" method="post" id="form1" enctype="multipart/form-data">
+					<div class="group-img clearfix">
+						<img src="/static/Portal/fengkonghui/Public/img/group.jpg">
+						<div class="group-this">
+							你可以上传JPG、JPEG、GIF、PNG文件。<br>
+							小组头像：<input type="file" name="img" id="pic" accept="image/*">
+						</div>
+					</div>
+					<ul class="group-info clearfix">
+						<li>
+							<label>小组名称：</label>
+							<input type="text" name="name" class="input">
+						</li>
+						<li>
+							<label>小组分类：</label>
+							<select name="cid" class="select">
+								<option value="">-- 请选择 --</option>
+								<foreach name="_class" item="vo">
+									<option value="{$vo.id}">{$vo.name}</option>
+								</foreach>
+							</select>
+						</li>
+						<li>
+							<label>&nbsp;</label>
+							<input class="submit" type="submit" value="确认创建">
+						</li>
+						<li>
+							<label>&nbsp;</label>
+							<div class="group-this">提示：需要P3及以上用户才能创建</div>
+						</li>
+					</ul>
+				</form>
+			</div>
+		</div>
+	</div>
+</block>
+<block name="script">
+
+</block>

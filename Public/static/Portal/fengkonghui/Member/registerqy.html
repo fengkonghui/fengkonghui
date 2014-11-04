@@ -1,0 +1,132 @@
+<extend name="Public/main" />
+<!-- content -->
+<block name="body">
+<div class="gr_data">
+	<div class="da_left">
+		<ul>
+			<li><a href="{:U('Member/register')}">个人注册</a></li>
+			<li><a href="#" class="da_left_def">企业注册</a></li>
+		</ul>
+	</div>
+	<div class="da_right">
+		<form id="reg" action="{:U('Member/doregister')}" method="post">
+			<table class="reg_left">
+				<tr>
+					<td class="reg_table_right">企业登录账号</td>
+					<td><input type="text" name="user_login_name"
+						class="reg_input" /></td>
+				</tr>
+				<tr>
+					<td class="reg_table_right">设置密码</td>
+					<td><input type="password" name="pass" class="reg_input" /></td>
+				</tr>
+				<tr>
+					<td class="reg_table_right">确定密码</td>
+					<td><input type="password" name="repass" class="reg_input" /></td>
+				</tr>
+				<tr>
+					<td class="reg_table_right">公司分类</td>
+					<td><select class="reg_input" name="company_type">
+							<option value="1">制造业</option>
+							<option value="2">服务业</option>
+							<option value="3">重工业</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td class="reg_table_right">所在城市</td>
+					<td><select class="reg_input" name="user_city">
+							<option value="1">上海</option>
+							<option value="2">北京</option>
+							<option value="3">广州</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td class="reg_table_right">注册资本</td>
+					<td><input type="text" name="company_capital"
+						class="reg_input" /></td>
+				</tr>
+			</table>
+			<table class="reg_right">
+				<colgroup>
+					<col width="100" />
+					<col width="200" />
+				</colgroup>
+				<tr>
+					<td class="reg_table_right">成立时间</td>
+					<td><input type="text" name="company_found_time"
+						class="reg_input" /></td>
+				</tr>
+				<tr>
+					<td class="reg_table_right">规模人数</td>
+					<td><input type="text" name="company_scale" class="reg_input" /></td>
+				</tr>
+				<tr>
+					<td class="reg_table_right">主营业务</td>
+					<td><input type="text" name="company_business"
+						class="reg_input" /></td>
+				</tr>
+				<tr>
+					<td class="reg_table_right">联系人姓名</td>
+					<td><input type="text" name="company_contactby"
+						class="reg_input" /></td>
+				</tr>
+				<tr>
+					<td class="reg_table_right">联系人手机号</td>
+					<td><input type="text" name="company_contacttel"
+						class="reg_input reg_tel" /><input type="button" name="phone_fake" value="发送验证" class="reg_but"></td>
+				</tr>
+				<tr>
+					<td class="reg_table_right">短信验证码</td>
+					<td><input type="text" name="user_tel_yz" class="reg_input reg_yz" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();" onTextChange="if(this.value.length>6)alert('只能输入6位验证码').;" maxlength="6"/></td>
+				</tr>
+				<tr>
+					<td class="reg_table_right">&nbsp;</td>
+					<td class="reg_xy_1"><input type="checkbox" name="user_xy"
+						value="1" class="reg_xy">已阅 <a href="">注册协议</a></td>
+				</tr>
+				<tr>
+					<td class="reg_table_right">&nbsp;</td>
+					<td><input type="hidden" name="type" value="enterprise" /> <input
+						type="submit" class="reg_sub" name="sub" value="注册" /></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+</block>
+<block name="script"> <script type="text/javascript">
+	$('#reg').submit(function(){
+		if(!$('input.reg_yz').val()){
+			alert('请输入验证码');
+			event.preventDefault();
+			return false;
+		}
+	});
+	$('input[name=phone_fake]').click(function(){
+        var btn = $(this);
+        if (btn.val() != '发送验证') {
+            return ;
+        }
+        var phone = $('input[name=user_tel]').val();
+        var myreg = /^13[\d]{9}$|14^[0-9]\d{8}|^15[0-9]\d{8}$|^18[0-9]\d{8}$/;
+        if(!myreg.test(phone)){
+           alert('请输入有效的手机号码！');return false;
+        }
+
+        $.ajax({
+            url:'{:U('Member/sendPhone')}',
+            data: { 'phone' : phone },
+            dataType:'json',
+            beforeSend:function(){
+                 btn.val('获取中...');
+            },
+            success:function(d){
+                if (d.state == 'success') {
+                    btn.val('获取成功').hide();
+                } else if (d.state == 'error') {
+                    btn.val('获取失败');
+                }
+            }
+        });
+    }); 
+</script> </block>

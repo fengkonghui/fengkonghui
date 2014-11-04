@@ -1,0 +1,36 @@
+<extend name="Public/main" />
+<!-- content -->
+<block name="body">
+<!-- 往期查询 -->
+<div class="special">
+	<div class="spec_title">
+		<div>&nbsp;</div>
+		<h2>往期查询</h2>
+		<div>&nbsp;</div>
+	</div>
+	
+	<div class="period-case">
+		<div class="case-list">
+			<foreach name="credit" item="vo">
+				<div class="ul">
+					<div class="years clearfix"><i>{$vo.years}年</i><em></em></div>
+					<foreach name="vo.month" item="row">
+					<div class="li">
+						<dl>
+							<dt class="month"><span class="day">{$vo.years}年{$row.month}月</span></dt>
+							<foreach name="row.day" item="rs">
+							<dd>
+								<a href="{:U('/Portal/Xdal/row',array('menu_id'=>1,'id'=>$rs['ID']))}" target="_blank">{$rs.xd_title}</a>
+							</dd>
+							</foreach>
+						</dl>
+					</div>
+					</foreach>
+				</div>
+			</foreach>
+		</div>
+	</div>
+</div>
+</block>
+
+<block name="script"> </block>

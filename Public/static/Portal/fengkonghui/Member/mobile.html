@@ -1,0 +1,61 @@
+<extend name="Public/main" />
+<!-- content -->
+<block name="style">
+	<style type="text/css">
+		.user-info{ border-bottom: 1px solid #ccc; border-top: 1px solid #ccc; padding: 5px 0; line-height: 24px; margin: 10px 0}
+		.user-info a { color: #bc0000;}
+	</style>
+</block>
+<block name="body">
+		<div class="gr_data">
+			<div class="da_left">
+				<include file="Member:center_nav" />
+			</div>
+			<div class="da_right">
+				<div class="spec_title da_title">
+					<div>&nbsp;</div>
+					<h1>手机修改</h1>
+					<div>&nbsp;</div>	
+				</div>
+				
+				<div class="user-info">
+					<form action="{:U()}" method="post">
+					<ul>
+						<li>
+							<label>原手机号：</label>
+							{$user_tel|substr=0,3}****{$user_tel|substr=-4}
+							<a href="javascript://" onclick="getCode();">获取验证码</a>
+						</li>
+						<li>
+							<label>校验码：</label>
+							<input type="text" name="user_tel_yz" class="reg_input reg_yz" onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onblur="this.v();" onTextChange="if(this.value.length>6)alert('只能输入6位验证码').;" maxlength="6"/>
+						</li>
+						<li>
+							<label>新手机号：</label>
+							<input type="text" name="mobile" class="reg_input">
+						</li>
+					</ul>
+					<input type="submit" name="submit" value="确认" />
+					</form>
+				</div>
+			</div>
+		</div>
+</block>
+<block name="script">
+	<script type="text/javascript">
+		function getCode(){
+			$.ajax({
+				type: "post",
+				url: "{:U('Center/getCode')}",
+				dataType: "json",
+				success: function(data){
+					if(data.status===1){
+
+					}else{
+
+					}
+				}
+			})
+		}
+	</script>
+</block>

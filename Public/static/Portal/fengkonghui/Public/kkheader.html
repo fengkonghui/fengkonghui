@@ -1,0 +1,32 @@
+﻿<!-- 获取导航信息   -->
+<notempty name="nav">
+<div class="header">
+	<div class="header_1">
+		<div class="header_img">
+			<a href="{:U('/')}">
+			<img src="__TMPL__/Public/img/logo.png" width="124" height="53" />
+			</a>
+		</div>
+		<div class="header_nav">
+<ul class="header_nav1">
+				<li><a class="" href="/portal/zaixian/index/menu_id/1.html">在线风控</a></li><li><a class="" href="/portal/xdal/index/menu_id/2.html">信贷案例</a></li><li><a class="" href="/portal/zhuanti/index/menu_id/3.html">风控技术</a></li><li><a class="" href="/portal/zhuanti/index/menu_id/4.html">信贷生活</a></li><li><a class="" href="/portal/zhuanti/index/menu_id/5.html">机构服务</a></li>			</ul>
+		</div>
+		<div class="top-header-menu">
+			<ul class="menu">
+				<if condition="strlen($_SESSION['MEMBER_id']) neq 0">
+				<li><a href="{:U('portal/center/index')}">{$Think.session.MEMBER_name}
+						<if condition="getMesNum() neq 0"> <span
+							class="fa fa-envelope" style="color: #FF4400;">
+							{:getMesNum()}</span> </if>
+				</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+				<li id="navright"><a href="{:U('portal/member/logout')}"><span
+						class="icon-signout"></span>退出</a>&nbsp;&nbsp;</li>
+				<else />
+				<li><a href="{:U('Portal/Member/index')}">登录</a>&nbsp;|&nbsp;</li>
+				<li><a href="{:U('Portal/Member/register')}">注册</a>&nbsp;&nbsp;</li>
+				</if>
+			</ul>
+		</div>
+	</div>
+</div>
+</notempty>

@@ -1,0 +1,36 @@
+<extend name="Public/main" />
+<block name="body">
+<div class="center">
+	<div class="technical">
+		<div class="title">
+			<h2>{$typename}</h2>
+		</div>
+		<div class="technical_content">
+			<ul>
+				<volist name="_list" id="vo">
+				<li>
+					<a href="{:U('zhuanti/pdfTuijian',array('ty_id'=>$vo[ID]))}">
+						<img src="{$vo.tj_img}" />
+					</a>
+					<switch name="vo.class">
+						<case value="2"><div class="level to1">机构</div></case>
+						<case value="3">
+							<if condition="getMemberField('group') lt $vo['group']">
+								<div class="level to3">{$vo.price}红途币</div>
+							<else />
+								<div class="level to2">{:getGroupName($vo['group'])}可阅</div>
+							</if>
+						</case>
+						<default /><div class="level">免费</div>
+					</switch>
+					<div class="title">{$vo.title}</div>
+				</li>
+				</volist>
+			</ul>
+		</div>
+		<div class="pages">
+			{$_page}
+        </div>
+	</div>
+</div>
+</block>

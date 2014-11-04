@@ -1,0 +1,154 @@
+<extend name="Public/main" />
+<!-- content -->
+<block name="body">
+<div class="special">
+
+	<div class="spec_title xindai_title">
+		<div>&nbsp;</div>
+		<h2>实战直通车</h2>
+		<div>&nbsp;</div>
+	</div>
+	<div class="xindai_wq">
+		<a href="{:U('xdal/wqcx',array('menu_id'=>'2'))}" class="xindai_def_a">往期查询</a> <a href="#"
+			class="gz_tanchuceng">规则说明 </a>
+	</div>
+	<div class="xindai_anli_01">
+		<div class="xindai_img">
+			<img alt=""
+				src="{$row1.xd_image|default='http://placehold.it/550x250'}" />
+		</div>
+		<div class="xindai_neirong">
+			<div class="xindai_neirong_title">
+				（案例直播）{$row1.xd_title} <span class="tiemleft_line">剩余时间：<span
+					data-st="{$row1.xd_surplus|strtotime}" class="tiemleft">{$row1.xd_surplus|lefttime}</span></span>
+			</div>
+			<div class="xindai_neirong_a">
+				<div class="xindai_nr">案例介绍：</div>
+				<p>{$row1.xd_jianjie}</p>
+			</div>
+			<div class="xindai_bu_jr">
+				<a href="{:U('row',array('menu_id'=>2,'id'=>$row1[ID]))}" style="z-index: 20;position: relative;" class="bnt">进入</a>
+			</div>
+		</div>
+		<div class="clearboth"></div>
+	</div>
+	<div class="xindai_anli_01">
+
+		<div class="xindai_neirong xindai_nr_left">
+			<div class="xindai_neirong_title">
+				（案例直播）{$row2.xd_title} <span class="tiemleft_line">剩余时间：<span
+					data-st="{$row2.xd_surplus|strtotime}" class="tiemleft">{$row2.xd_surplus|lefttime}</span></span>
+			</div>
+			<div class="xindai_neirong_a">
+				<div class="xindai_nr">案例介绍：</div>
+				<p>{$row2.xd_jianjie}</p>
+			</div>
+			<div class="xindai_bu_jr">
+				<a href="{:U('row',array('menu_id'=>2,'id'=>$row2[ID]))}" style="z-index: 20;position: relative;" class="bnt">进入</a>
+			</div>
+		</div>
+		<div class="xindai_img">
+			<img alt=""
+				src="{$row2.xd_image|default='http://placehold.it/550x250'}" />
+		</div>
+		<div class="clearboth"></div>
+	</div>
+</div>
+<div class="xindai_vs">
+	<div class="xindai_vs1" id="wqcx">
+		<foreach name="rows" item="row">
+		<div class="xindai_vs_div"
+			style="background-image: url('{$row.xd_image|default=' http :// placehold.it/ 550x250 '}')">
+			<div class="xindai_txdw">
+				<img alt=""
+					src="{:avatars($row['zheng'])}" />
+			</div>
+			<div class="xindai_txdw2">
+				<img src="__TMPL__/Public/img/xindai_04.png" />
+			</div>
+			<div class="xindai_txdw1">
+				<img alt=""
+					src="{:avatars($row['fan'])}" />
+			</div>
+			<div class="xindai_txdw3">
+				<div>{$row.xd_title}</div>
+				<div style="text-align: center;">
+					<a class="sbut"
+						href="{:U('row',array('menu_id'=>2,'id'=>$row[ID]))}">进入</a>
+				</div>
+			</div>
+		</div>
+		</foreach>
+	</div>
+	<if condition="$hasmore">
+	<div class="xindai_vs2">
+		<a href="{:U('xdal/index',array('id'=>2,'p'=>$page))}"
+			style="text-decoration: none; color: #fff;">加载更多</a>
+	</div>
+	</if>
+</div>
+<div class="xindai_fx" id="xindai_fx">
+	<div class="spec_rig_top jishu_left_x xindai_fx1">
+		<h2>案例分享</h2>
+		<div>
+			<a {:$_GET['type']=='' ? 'class="on"' : ''} href="{:U('xindaixiangqing/wangyouanli',array('menu_id'=>2))}">发布案例</a>
+			<a {:$_GET['type']=='now' ? 'class="on"' : ''} href="{:U('xdal/index#xindai_fx',array('menu_id'=>2,'type'=>'now'))}">最新</a> | 
+			<a {:$_GET['type']=='essence' ? 'class="on"' : ''} href="{:U('xdal/index#xindai_fx',array('menu_id'=>2,'type'=>'essence'))}">精华</a> | 
+			<a {:$_GET['type']=='popularity' ? 'class="on"' : ''} href="{:U('xdal/index#xindai_fx',array('menu_id'=>2,'type'=>'popularity'))}">人气</a>
+		</div>
+	</div>
+	<div class="jishu_cont">
+		<foreach name="wangyou" item="arr"> 
+			<div class="jishu_cont1 xindai_fx2" style="height: 80px;">
+				<div class="touxiang corner">
+					<a href="{:U('Portal/member/user',array('uid'=>$arr['user_id']))}" target="_blank"><img src="{:avatars($arr['user_id'])}" /></a>
+				</div>
+				<p>{$arr.user_id|getName}&nbsp;</p>
+				<p><a href="{:U('xindai/anlixiangqing',array('menu_id'=>2,'wy_id'=>$arr[ID]))}">{$arr.wy_title}</a></p>
+			</div>
+		 </foreach>
+	</div>
+	<div class="page">{$Page1}</div>
+</div>
+</block>
+
+<block name="popup">
+<div class="gz">
+	<div>
+		<img src="__TMPL__/Public/img/gz_01.jpg" class="gz_img" /> <img
+			src="__TMPL__/Public/img/gz_02.png" />
+	</div>
+</div>
+</block>
+
+<block name="script"> <script type="text/javascript">
+	function pad(num, n) { 
+		var i = (num + "").length; 
+		while(i++ < n) num = "0" + num; 
+		return num; 
+	} 
+	window.setInterval(function() {
+		$('.tiemleft').each(function() {
+			var now = new Date(); 
+			var endDate = new Date($(this).data('st') * 1000);
+			var leftTime=endDate.getTime()-now.getTime(); 
+			if(leftTime > 0){
+				var leftsecond = parseInt(leftTime/1000); 
+				var day1=Math.floor(leftsecond/(60*60*24)); 
+				var hour=Math.floor((leftsecond-day1*24*60*60)/3600); 
+				var minute=Math.floor((leftsecond-day1*24*60*60-hour*3600)/60); 
+				var second=Math.floor(leftsecond-day1*24*60*60-hour*3600-minute*60); 
+				if(day1)
+					$(this).text(day1+"天 "+pad(hour,2)+":"+pad(minute,2)+":"+pad(second,2));
+				else
+					$(this).text(pad(hour,2)+":"+pad(minute,2)+":"+pad(second,2));
+					
+			}else{
+				$(this).text('已公布');
+			}
+		});
+	}, 1000);
+	$('.xindai_fx .page a').each(function(){
+		$(this).attr('href',$(this).attr('href') + '#xindai_fx');
+	});
+</script> </block>

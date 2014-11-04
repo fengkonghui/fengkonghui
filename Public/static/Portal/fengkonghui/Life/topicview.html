@@ -1,0 +1,153 @@
+<extend name="Public/main" />
+<!-- content -->
+<block name="body">
+	<div class="main-group">
+		<div class="mp15 topic-views bgWhite fl">
+			<div class="group-title">
+				<h2>话题</h2>
+			</div>
+			<div class="h20"></div>
+			<div class="topic-views">
+				<h2 class="hd">{$_info.title}</h2>
+				<div class="db">
+					<div class="avatars">
+						<img src="{$_info.uid|avatars}">
+					</div>
+					<span class="basic">来自：&nbsp;&nbsp;{:friendlyDate($_info['dateline'])}</span>
+					{$_info.content|htmlspecialchars_decode}
+				</div>
+				<div class="h20"></div>
+			</div>
+			<div class="discuss">
+				<h2><span>评论</span></h2>
+				<div class="discuss-area">
+					<form action="{:U('topic_comment')}" id="form1" method="post">
+						<textarea name="content"></textarea>
+						<input type="hidden" value="{$_GET['id']}" name="nid">
+						<input type="submit" value="评论" name="sub" class="submit fr">
+					</form>
+				</div>
+				<ul class="discuss-list">
+					<foreach name="comment" item="vo">
+						<li>
+							<div class="avatars">
+								<img src="{$vo.uid|avatars}">
+							</div>
+							<div class="discuss-content">
+								<span class="nickname"><a href="{:U('/Portal/member/user',array('uid'=>$vo['uid']))}" target="_blank">{:getMemberField('user_nickname',$vo['uid'])}</a> {:friendlyDate($vo['create_time'])}</span>
+								{$vo.content}
+								<p class="huifu" style="margin-top:0">
+									<a href="javascript:void(0);" class="reply_btn">
+										<img src="/static/Portal/fengkonghui/Public/img/img_01.png">&nbsp;回复</a>&nbsp;&nbsp;
+									<a href="javascript:void(0);" class="open">
+										<span class="tihuan">展开</span><span class="num">({$vo.num})</span>
+									</a>
+								</p>
+							</div>
+							<div class="reply reply_huifu" style="display: none; margin-top:0;">
+								<form action="{:U('topic_comment')}" method="post" class="replycheck xiangqing_sub" style="padding-top: 0">
+									<input type="hidden" name="replyfor" value="{$vo.id}">
+									<input type="hidden" name="nid" value="{$_GET['gid']}" />
+									<textarea name="content" class="" required="required"></textarea>
+									<div style="text-align: right; margin-top: 10px; margin-bottom: 10px;">
+										<input type="submit" class="" name="sub" value="回复">
+									</div>
+								</form>
+							</div>
+							<foreach name="vo._comment" item="row">
+								<div class="jishu_cont1 pinglun_01 pinglun_001" style="display: none;">
+									<div class="touxiang">
+										<img src="{$row.uid|avatars}" />
+									</div>
+									<div class="fl" style="width:565px;">
+										<p style="width:565px;">
+											<a href="{:U('/Portal/member/user',array('uid'=>$row['uid']))}" target="_blank">
+												{:getMemberField('user_nickname',$row['uid'])}
+											</a>
+										</p>
+										<p style="width:565px;">{$row.content}</p>
+									</div>
+								</div>
+							</foreach>
+						</li>
+					</foreach>
+				</ul>
+			</div>
+			<div class="h20"></div>
+		</div>
+		<div class="squad fr">
+			<div class="tools">
+				<a href="{:U('topic',array('id'=>$_GET['gid']))}" class="on">发布话题</a>
+				<a href="{:U('group',array('id'=>$_GET['gid']))}">全部话题</a>
+				<a href="{:U('group',array('id'=>$_GET['gid'],'type'=>'my'))}">我的话题</a>
+			</div>
+			<div class="team-user bgWhite mp15">
+				<h2 class="hd"><span>小组成员</span></h2>
+				<div class="db">
+					<foreach name="_user" item="vo">
+					<dl class="clearfix">
+						<dt>
+							<img class="avatars" src="{$vo.uid|avatars}">
+						</dt>
+						<dd>
+							<span class="nickname">
+								<a href="{:U('/Portal/member/user',array('uid'=>$vo['uid']))}" target="_blank">{:getMemberField('user_nickname',$vo['uid'])}</a>
+							</span>
+							<span>
+								用户级别：****
+							</span>
+						</dd>
+					</dl>
+					</foreach>
+				</div>
+				<div class="h20"></div>
+			</div>
+		</div>
+	</div>
+</block>
+<block name="script">
+<script type="text/javascript">
+$('.reply_btn').click(function() {
+	$(this).parent().parent().siblings('.reply').toggle();
+});
+$('.open').click(function() {
+	if ($(this).parent().parent().siblings('.pinglun_001').is(':hidden')) {
+		$(this).parent().parent().siblings('.pinglun_001').show();
+		$(this).find('.tihuan').text('收起');
+		$(this).find('.num').hide();
+	} else {
+		$(this).parent().parent().siblings('.pinglun_001').hide();
+		$(this).find('.tihuan').text('展开');
+		$(this).find('.num').show();
+	}
+});
+jQuery.extend(jQuery.validator.messages, {
+    required: "必选字段",
+	remote: "请修正该字段",
+	email: "请输入正确格式的电子邮件",
+	url: "请输入合法的网址",
+	date: "请输入合法的日期",
+	dateISO: "请输入合法的日期 (ISO).",
+	number: "请输入合法的数字",
+	digits: "只能输入整数",
+	creditcard: "请输入合法的信用卡号",
+	equalTo: "请再次输入相同的值",
+	accept: "请输入拥有合法后缀名的字符串",
+	maxlength: jQuery.validator.format("请输入一个 长度最多是 {0} 的字符串"),
+	minlength: jQuery.validator.format("请输入一个 长度最少是 {0} 的字符串"),
+	rangelength: jQuery.validator.format("请输入 一个长度介于 {0} 和 {1} 之间的字符串"),
+	range: jQuery.validator.format("请输入一个介于 {0} 和 {1} 之间的值"),
+	max: jQuery.validator.format("请输入一个最大为{0} 的值"),
+	min: jQuery.validator.format("请输入一个最小为{0} 的值")
+});
+$('#form1').validate({
+	submitHandler: function (form) {
+		content = $('textarea[name=content]').val();
+		if(content)
+			form.submit();
+		else
+			alert('评论不能为空');
+	}
+});
+</script>
+</block>

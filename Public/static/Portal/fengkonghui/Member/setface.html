@@ -1,0 +1,44 @@
+
+<extend name="Public/main" />
+<!-- content -->
+<block name="style">
+	<style type="text/css">
+		.user-info{ border-bottom: 1px solid #ccc; border-top: 1px solid #ccc; padding: 5px 0; line-height: 24px;}
+		.user-info a { color: #bc0000;}
+	</style>
+</block>
+<block name="body">
+		<div class="gr_data">
+			<div class="da_left">
+				<include file="Member:center_nav" />
+			</div>
+			<div class="da_right" style="overflow: hidden;padding-bottom: 10px;">
+				<div class="spec_title da_title">
+					<div>&nbsp;</div>
+					<h2>修改头像</h2>
+					<div>&nbsp;</div>	
+				</div>
+				<div id="altContent"></div>
+			</div>
+		</div>
+</block>
+<block name="script">
+<script src="http://open.web.meitu.com/sources/xiuxiu.js" type="text/javascript"></script>
+<script type="text/javascript">
+    window.onload=function(){
+      xiuxiu.embedSWF("altContent",5,"975px","440px");
+      xiuxiu.setUploadURL("{:U('center/upavatar','',true,true)}");
+      xiuxiu.onInit = function ()
+      {
+        xiuxiu.loadPhoto("{:avatars($_SESSION ["MEMBER_id"])}");
+      }
+      xiuxiu.onUploadResponse = function (data){
+        if(data == "success"){
+            window.location="{:U('/Portal/center/index')}";
+        }else{
+            alert(data);
+        }
+      }
+    }
+</script>
+</block>

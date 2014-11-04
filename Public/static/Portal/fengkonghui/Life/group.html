@@ -1,0 +1,76 @@
+<extend name="Public/main" />
+<!-- content -->
+<block name="body">
+	<div class="main-group">
+		<div class="mp15 group-list bgWhite fl">
+			<div class="group-title">
+				<h2>话题</h2>
+			</div>
+			<div class="h20"></div>
+			<ul class="db">
+				<foreach name="_list" item="vo">
+					<li class="clearfix">
+						<span class="comment fl">
+						<em class="quantum">{$vo.num}</em>评论</span>
+						<div class="group-info">
+							<h2 class="clearfix"><a href="{:U('topicview',array('id'=>$vo['id'],'gid'=>$vo['gid']))}" target="_blank">{$vo.title}</a></h2>
+							<div class="describe">{:cutstr_html($vo['content'],250)}</div>
+							<div class="userinfo">
+								<a href="{:U('/Portal/member/user',array('uid'=>$vo['uid']))}" target="_blank">{:getMemberField('user_nickname',$vo['uid'])}</a>&nbsp;&nbsp;{:friendlyDate($vo['dateline'])}
+							</div>
+						</div>
+					</li>
+				</foreach>
+			</ul>
+			<div class="page">{$page}</div>
+		</div>
+		<div class="squad fr">
+			<div class="tools">
+				<a href="{:U('topic',array('id'=>$_GET['id']))}" class="on">发布话题</a>
+				<a href="{:U('group',array('id'=>$_GET['id']))}">全部话题</a>
+				<a href="{:U('group',array('id'=>$_GET['id'],'type'=>'my'))}">我的话题</a>
+			</div>
+			<div class="team-user bgWhite mp15">
+				<h2 class="hd"><span>小组成员</span></h2>
+				<div class="db">
+					<foreach name="_user" item="vo">
+					<dl class="clearfix" class="group{$vo.id}">
+						<dt>
+							<img class="avatars" src="{$vo.uid|avatars}">
+						</dt>
+						<dd>
+							<span class="nickname">
+								<a href="{:U('/Portal/member/user',array('uid'=>$vo['uid']))}" target="_blank">{:getMemberField('user_nickname',$vo['uid'])}</a>
+								<if condition="$auth_group neq 0">
+								<a href="javascript://" class="kick" data-uid="{$vo.uid}" data-gid="{$vo.gid}" title="踢出-{:getMemberField('user_nickname',$vo['uid'])}">踢</a>
+								</if>
+							</span>
+							<span>
+								用户级别：{$vo.uid|membergroup|groupname}
+							</span>
+						</dd>
+					</dl>
+					</foreach>
+				</div>
+				<div class="h20"></div>
+			</div>
+		</div>
+	</div>
+</block>
+
+<block name="script">
+<script type="text/javascript">
+$(function(){
+	//退出小组
+	$(".team-user .nickname .kick").click(function(){
+		var kick = $(this);
+		var uid = kick.data('uid');
+		var gid = kick.data('gid');
+		$.post("/Portal/life/ajax.html", {type:'kick_group',uid: uid,id: gid},function (d){
+			kick.parent().parent().parent().remove();alert(d.info);
+		}, "json");
+	});
+})
+
+</script>
+</block>

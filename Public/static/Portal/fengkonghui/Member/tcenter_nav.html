@@ -1,0 +1,6 @@
+<ul>
+	<li><a href="{:U('member/user',array('uid'=>$uid))}" <if condition="ACTION_NAME eq 'user'">class="da_left_def"</if>>会员中心</a></li>
+	<li><a href="{:U('member/trelease',array('tab'=>'case','uid'=>$uid))}" <if condition="ACTION_NAME eq 'trelease'">class="da_left_def"</if>>他发布的</a></li>
+	<li><a href="{:U('member/tmyanswer',array('tab'=>'case','uid'=>$uid))}" <if condition="ACTION_NAME eq 'tmyanswer'">class="da_left_def"</if>>他的回答</a></li>
+	<li><a href="{:U('member/tgroup',array('uid'=>$uid))}" <if condition="ACTION_NAME eq 'tgroup'">class="da_left_def"</if>>他的小组</a></li>
+</ul>

@@ -1,0 +1,58 @@
+<extend name="Public/main" />
+<!-- content -->
+<block name="style">
+	<style type="text/css">
+		.user-info{ border-bottom: 1px solid #ccc; border-top: 1px solid #ccc; padding: 5px 0; line-height: 24px;}
+		.user-info a { color: #bc0000;}
+	</style>
+</block>
+<block name="body">
+	<div class="gr_data">
+		<div class="da_left">
+			<include file="Member:center_nav" />
+		</div>
+		<div class="da_right" style="overflow: hidden;padding-bottom: 10px;">
+			<div class="center-group">
+				<div class="title">
+					<h2>我的小组</h2>
+					<a href="{:U('build_group')}" class="create-group">创建小组</a>
+				</div>
+				<ul class="group-list">
+					<li>
+					<foreach name="group" item="vo">
+							<div class="group_db">
+								<if condition="strtoupper($_SESSION['MEMBER_id']) eq strtoupper($vo['uid'])">
+									<span class="invented" title="自创" alt="自创">自</span>
+								</if>
+								<img src="{$vo.id|grouptx}">
+								<dl>
+									<dt><a target="_blank" href="{:U('Portal/life/group',array('id'=>$vo['id']))}">{$vo.name}</a></dt>
+									<dd>0&nbsp;群员</dd>
+									<dd><a class="submit" data-id="{$vo.id}" href="javascript://">退出小组</a></dd>
+								</dl>
+							</div>
+						<if condition="strtoupper($key+1)%3 eq '0' ">
+							</li>
+							<if condition="strtoupper($key+1) neq count($group)"><li></if>
+						</if>
+					</foreach>
+				</ul>
+			</div>
+		</div>
+	</div>
+</block>
+<block name="script">
+<script type="text/javascript">
+$(function(){
+	//退出小组
+	$(".group-list .group_db .submit").click(function(){
+		var submit = $(this);
+		var id = submit.data('id');
+		$.post("/Portal/life/ajax.html", {type:'exit_group',id: id},function (d){
+			submit.parent().parent().parent('.group_db').remove();
+		}, "json");
+	});
+})
+
+</script>
+</block>

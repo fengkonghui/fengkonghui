@@ -1,0 +1,238 @@
+﻿
+<extend name="Public/main" />
+<block name="body">
+			<div class="kno_title">
+				<div>&nbsp;</div>
+				<h2>风控专题</h2>
+				<div>&nbsp;</div>
+			</div>
+		<div class="special">
+			<div class="spec_left">
+				<volist name="zhuanti" id="vo">
+					<div class="spec_cont">
+						<div class="spec_cont_num">{$i}</div>
+						<div class='spec_cont_img{$i}'><img src="{$vo.image}" ></div>   
+						<div class="spec_wz2 spec_width{$i}">
+							<a target="_blank" href="{:U('Portal/zhuanti/zhuanti_show',array('id'=>$vo['ID']))}" class="spec_cont_title">{$vo.zt_title}</a>
+							<p>{:nv_cutstr($vo['describe'],144)}</p>
+							<a target="_blank" href="{:U('Portal/zhuanti/zhuanti_show',array('id'=>$vo['ID']))}" class="xq">了解详情 &gt;&gt;</a>
+						</div>
+					</div>
+				</volist>
+			</div>
+			<div class="spec_right">
+				<div class="spec_rig_top">
+					<h2>下周专题</h2>
+					<div>&nbsp;</div>
+				</div>
+				<div class="spec_rig_xz">
+					<div class="spec_rig_xz1">
+						<foreach name="xq_zhuanti1" item="xq_zhuanti1">
+							<div class="spec_click spec_click_{$key+1}" title="{$xq_zhuanti1.title}">
+								{:nv_cutstr($xq_zhuanti1['title'],36)}
+								<img class="spec_rig_img" src="__TMPL__/Public/img/fengkonghui.png">
+								<input type="checkbox" value="{$xq_zhuanti1.id}" name="weekIds[]" style="display:none">
+							</div>
+						</foreach>
+					</div>
+					<input type="hidden" name="toupiao" class="toupiao" />
+					<input type="hidden" name="" class="num" value="1" />
+					<div class="spec_rig_xz1"><div id="toupiao" class="spec_sub">投票</div></div>
+				</div>
+				<div class="spec_shuliang">
+					<div class="spec_shuzhuang" style="padding-top:20px;overflow: inherit;">
+						<volist name="piaoshu" id="vo">
+							<div class="spec_div{$key+1}" style="height:{:round($vo['number']/$vote_total*100,10)}%"><span class="spec_span{$key+1}">{$vo.number}票</span></div>
+						</volist>
+					</div>
+					<div class="spec_biaoti">
+						<foreach name="piaoshu" item="a">
+						<div>{$key+1}</div>
+						</foreach>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="knowledge">
+			<div class="kno_title">
+				<div>&nbsp;</div>
+				<h2>风控技术知识</h2>
+				<div>&nbsp;</div>
+			</div>
+			<div class="kno_xz">
+				<div class="kno_xz1">
+					<div class="kno_xz4 prevPage"><img src="__TMPL__/Public/img/kno_1.png"></div>
+					<div class="kno_xz3" id="forceCentered">
+						<ul>
+						<if condition="$type eq null">
+							&nbsp;
+							<else />
+							<foreach name="type" item="type">
+								<li><div class="kno_d {$type.class}" type_id="{$type.ID}"><a href="javascript:">{$type.ty_title}</a></div></li>
+							</foreach>
+						</if>
+						</ul>
+					</div>
+					<div class="kno_xz4 nextPage"><img src="__TMPL__/Public/img/kno_2.png"></div>
+				</div>
+				<div class="kno_xz2">
+					<if condition="$type eq null">
+						<div>没有相关文档</div>
+					<else />
+						<foreach name="jishu" item="jishu">
+							<div><a href="{:U('zhuanti/technical',array('type'=>$jishu[ID]))}">{$jishu.ty_title}</a></div>
+						</foreach>
+					</if>
+				</div>
+			</div>
+		</div>
+		
+		<div class="read">
+			<div class="read1">
+				<div class="read_top">推荐阅读</div>
+				<div class="read_content">
+					<foreach name="read" item="read">
+						<div class="read_content1">
+							<a href="{:U('zhuanti/pdfTuijian',array('ty_id'=>$read[ID]))}">
+								<img src="{$read.tj_img}" />
+							</a>
+							<switch name="read.class">
+								<case value="2"><div class="level to1">机构</div></case>
+								<case value="3">
+									<if condition="getMemberField('group') lt $read['group']">
+										<div class="level to3">{$read.price}红途币</div>
+									<else />
+										<div class="level to2">{:getGroupName($read['group'])}可阅</div>
+									</if>
+								</case>
+								<default /><div class="level">免费</div>
+							</switch>
+							
+							<div class="title">{$read.title}</div>
+						</div>
+					</foreach>
+				</div>
+				<div class="read_content">
+					<foreach name="read1" item="read1">
+						<div class="read_content1">
+							<a href="{:U('zhuanti/pdfTuijian',array('ty_id'=>$read1[ID]))}"><img src="{$read1.tj_img}" /></a>
+							<div class="level">{$read.price}</div>
+							<div class="title">{$read.title}</div>
+						</div>
+					</foreach>
+				</div>
+			</div>
+		</div>
+			<div class="kno_title">
+				<div>&nbsp;</div>
+				<h2>发现更多技术</h2>
+				<div>&nbsp;</div>
+			</div>		
+		<div class="jishu">
+			<div class="jishu_left" id="jishu">
+				<div class="spec_rig_top jishu_left_x">
+					<h2>技术分享</h2>
+					<div>
+						<a id='fbjs' {:$_GET['type']=='' ? 'class="on"' : ''} href="{:U('zhuanti/jishu',array('menu_id'=>3))}">发布技术</a>
+						<a {:$_GET['type']=='now'     ? 'class="on"' : ''} href="{:U('zhuanti/index#jishu',array('menu_id'=>3,'type'=>'now'))}">最新</a> | 
+						<a {:$_GET['type']=='essence' ? 'class="on"' : ''} href="{:U('zhuanti/index#jishu',array('menu_id'=>3,'type'=>'essence'))}">精华</a> | 
+						<a {:$_GET['type']=='popularity' ? 'class="on"' : ''} href="{:U('zhuanti/index#jishu',array('menu_id'=>3,'type'=>'popularity'))}">人气</a>
+					</div>
+				</div>
+				<div class="jishu_cont">
+					<foreach name="fenxiang" item="fenxiang">
+						<a href="{:U('zhuanti/jishuxiangqing',array('menu_id'=>3,'xq_id'=>$fenxiang[id]))}">
+							<div class="jishu_cont1">
+								<div class="touxiang"><img src="{:avatars($fenxiang['user_id'])}" /></div>
+								<p>{$fenxiang.user_id|getName}</p>
+								<p>{$fenxiang.fx_title}</p>
+							</div>
+						</a>
+					</foreach>
+				</div>
+				<div class="page">
+                    {$Page}
+            </div>
+		</div>
+		<div class="jishu_right">
+			<div class="jishu_rig">
+				<div class="spec_rig_top jishu_rig_x">
+					<h2>风控专家</h2>
+					<div>&nbsp;</div>
+				</div>
+			</div>
+			<div class="jishu_zj">
+				<volist name="expert" id="vo">
+				<a href="{:U('Portal/member/user',array('uid'=>$vo['uid']))}" target="_blank">
+					<div class="jishu_zj1">
+						<div><img src="{:avatars($vo['uid'])}"></div>
+						<p>{:getName($vo['uid'])}</p>
+					</div>
+				</a>
+				</volist>
+			</div>
+			<div class="zj_fy">
+				<div class="zj_fy_y">&nbsp;</div>
+				<div class="zj_fy1">
+					<a href="" class="">&nbsp;</a>
+					<a href="">&nbsp;</a>
+					<a href="">&nbsp;</a>
+				</div>
+				<div class="zj_fy_y">&nbsp;</div>
+			</div>
+		</div>
+</block>
+<block name="script">
+	<script src="__TMPL__/Public/js/jquery.sly.js"></script>
+	<script type="text/javascript">
+		//标签滚动
+		$('#forceCentered').sly({horizontal: 1,itemNav: "basic",dragContent: 1,startAt: 3,scrollBy: 1});
+		$('.jishu_left .page a').each(function(){
+			$(this).attr('href',$(this).attr('href') + '#jishu');
+		});
+		$(function(){
+			$('.spec_sub').click(function(){
+				var weekIds = $('input[name="weekIds[]"]:checked'),
+					num = weekIds.length,
+					ids = '';
+				if(num>3){
+					alert('最多选择三项');
+				}else{
+					for(var i=0;i<weekIds.length;i++){
+						ids += weekIds[i].value +",";
+					} 
+					$.post("{:U('zhuanti/ajToupiao')}",{ids:ids},function(Obj){
+						var Obj = eval("("+Obj+")");
+						if(Obj.status===1){
+							alert('投票成功');
+						}else{
+							alert(Obj.info);
+						}
+						location = location;
+					});
+				}
+			});
+			/**
+			* 风控技术进行分类查询
+			**/
+			$('.kno_d').click(function(){
+				var ty_id = $(this).attr('type_id');
+				$('.kno_d').css('background','#DFDFDF');
+				$(this).css('background','#F1F1F1');
+				$.post("{:U('zhuanti/ajZhishi')}",{ty_id:ty_id},function(data){
+					//替换网页内容
+					$('.kno_xz2').html(data);
+				});
+			});
+			
+		});
+	</script>
+</block>
+<block name="script"><script type="text/javascript"> var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F35e25f6cc8d6fc30dab7dd3fff2d9ccc' type='text/javascript'%3E%3C/script%3E")) </script></block>
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F934437330fe78c87e114dbb1f21ff0ad' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>

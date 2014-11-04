@@ -1,0 +1,123 @@
+<extend name="Public/main" />
+<!-- content -->
+<block name="body">
+<div class="fkzx_content">
+	<div class="spec_title">
+		<div>&nbsp;</div>
+		<h2>技术发布</h2>
+		<div>&nbsp;</div>
+	</div>
+	<form id="form1" method="post" action="{:U('zhuanti/jishu')}">
+		<table class="wangyou">
+
+			<tr>
+				<td class="wangyou_right">技术标题：</td>
+				<td><input type="text" name="fx_title" minlength="4"
+					maxlength="30" required /></td>
+			</tr>
+			<tr>
+				<td class="wangyou_right">技术内容：</td>
+				<td><textarea id="content" name="fx_cent" minlength="10"
+						maxlength="1000" required></textarea></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>
+					<div class="wangyou_add">
+						<span>添加标签</span>
+					</div> <span class="biaoqian_xianshi"></span>
+					<div class="zidingyi">
+						<span>自定义标签</span>
+					</div> <span class="zidingyi_xianshi"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><input type="hidden" name="neizhi_biaoqian"
+					class="neizhi_biaoqian" value="" /> <input type="hidden"
+					name="zidingyi_biaoqian" class="zidingyi_biaoqian" value="" /> <input
+					type="submit" value="发布技术" class="wangyou_submit" /></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<!-- 预设标签 -->
+<div class="add_biaoqian">
+	<div class="add_biaoqian1">
+		<div class="spec_title bq_zd">
+			<div>&nbsp;</div>
+			<h2>选择标签</h2>
+			<div>&nbsp;</div>
+		</div>
+		<div class="xz_biaoqian">
+			<foreach name="arr" item="arr">
+			<div class="xz_add" data-tid="{$arr.ID}">
+				<span>{$arr.parent_bq}{$arr['parent_bq']?'/':''}{$arr.bq}</span><img
+					src="__TMPL__/Public/img/cuo.png" class="img_qx" />
+			</div>
+			</foreach>
+		</div>
+		<div class="wangyou_sub">
+			<input type="button" value="确定" class="xz_sub" /><input
+				type="button" value="取消" class="bq_qx" id="bq_qx" />
+		</div>
+	</div>
+</div>
+<!-- 自定义标签 -->
+<div class="zd_biaoqian">
+	<div class="zd_biaoqian1">
+		<div class="spec_title bq_zd">
+			<div>&nbsp;</div>
+			<h2>网友标签</h2>
+			<div>&nbsp;</div>
+		</div>
+		<textarea rows="" placeholder="自定义标签，逗号“,”分隔" cols=""></textarea>
+		<div class="wangyou_sub">
+			<input type="button" value="保存" class="zd_sub" /><input
+				type="button" value="取消" class="bq_qx" />
+		</div>
+	</div>
+</div>
+</block>
+
+<block name="script"> <script charset="utf-8"
+	src="__ROOT__/static/asset/kindeditor/kindeditor-min.js"></script> <script
+	charset="utf-8" src="__ROOT__/static/asset/kindeditor/lang/zh_CN.js"></script>
+<script>
+	KindEditor.ready(function(K) {
+		window.editor = K.create('#content', {
+			afterBlur : function() {
+				this.sync();
+			}
+		});
+	});
+</script> <script type="text/javascript">
+	jQuery.extend(jQuery.validator.messages, {
+		required : "必选字段",
+		remote : "请修正该字段",
+		email : "请输入正确格式的电子邮件",
+		url : "请输入合法的网址",
+		date : "请输入合法的日期",
+		dateISO : "请输入合法的日期 (ISO).",
+		number : "请输入合法的数字",
+		digits : "只能输入整数",
+		creditcard : "请输入合法的信用卡号",
+		equalTo : "请再次输入相同的值",
+		accept : "请输入拥有合法后缀名的字符串",
+		maxlength : jQuery.validator.format("请输入一个 长度最多是 {0} 的字符串"),
+		minlength : jQuery.validator.format("请输入一个 长度最少是 {0} 的字符串"),
+		rangelength : jQuery.validator.format("请输入 一个长度介于 {0} 和 {1} 之间的字符串"),
+		range : jQuery.validator.format("请输入一个介于 {0} 和 {1} 之间的值"),
+		max : jQuery.validator.format("请输入一个最大为{0} 的值"),
+		min : jQuery.validator.format("请输入一个最小为{0} 的值")
+	});
+	$('#form1').validate({
+		submitHandler : function(form) {
+			content = $('#content').val()
+			if (content)
+				form.submit();
+			else
+				alert('请填写技术内容');
+		}
+	});
+</script> </block>

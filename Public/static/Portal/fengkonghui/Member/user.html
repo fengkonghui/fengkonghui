@@ -1,0 +1,130 @@
+<extend name="Public/main" />
+<!-- content -->
+<block name="style">
+<style type="text/css">
+.user-info {
+	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	padding: 5px 0;
+	line-height: 24px;
+}
+
+.user-info a {
+	color: #bc0000;
+}
+</style>
+<style type="text/css">
+.jifen,.hongtubi {
+	background-color: #fff;
+	position: absolute;
+	z-index:20;
+	top:20%;
+	left:20%;
+	right:20%;
+	width:60%;
+}
+.jifen li,.hongtubi li{
+	height:30px;
+	line-height: 30px;
+	border-bottom: 1px dashed #e2e2e2;
+	text-align: center;
+}
+.jifen li label,.hongtubi li label{
+	display: inline-block;
+	width:33%;
+} 
+.gz{
+}
+</style>
+</block>
+<block name="body">
+<div class="gr_data">
+	<div class="da_left">
+		<include file="Member:tcenter_nav" />
+	</div>
+	<div class="da_right">
+		<div class="spec_title da_title">
+			<div>&nbsp;</div>
+			<h2>会员中心</h2>
+			<div>&nbsp;</div>
+		</div>
+		<div class="da_nav">
+			<div class="da_nav_left">
+				<div class="da_tx">
+					<img src="{:avatars($_SESSION [" MEMBER_id"])}" />
+				</div>
+				<div class="da_xinxi">
+					<p>{$_info.user_login_name}</p>
+					<p>&nbsp;</p>
+					<p>
+						<img src="__TMPL__/Public/img/geren_07.png" />
+						<span>{:groupname($_info['group'])}</span>
+					</p>
+					<p>
+						<input type="image" src="__TMPL__/Public/img/geren_02.png"
+							onclick="alert('栏目建设中，敬请关注');" />
+					</p>
+				</div>
+			</div>
+			<div class="da_nav_right">
+				<ul>
+					<li>
+						<a href="{:U('member/tintegral',array('tab'=>'coin','uid'=>$uid))}">
+							<img src="__TMPL__/Public/img/geren_03.png">
+						</a>
+						<p>{$Think.session.MEMBER_id|memberScore}红途币</p>
+					</li>
+					<li>
+						<a href="{:U('member/tintegral',array('tab'=>'integral','uid'=>$uid))}" class="da_nav_def">
+							<img src="__TMPL__/Public/img/geren_04.png">
+						</a>
+						<p>{$Think.session.MEMBER_id|memberRedcoin}积分</p>
+					</li>
+					<li>
+						<a href="#">
+							<img src="__TMPL__/Public/img/geren_05.png">
+						</a>
+						<p>邀请朋友</p>
+					</li>
+					<li>
+						<a href="#">
+							<img src="__TMPL__/Public/img/geren_06.png">
+						</a>
+						<p>申请跳级</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="da_bewrite">
+			<div class="da_bew_dingwei">个人简介</div>
+			<p class="profile">{$_info.profile}</p>
+		</div>
+	</div>
+</div>
+</block>
+<block name="script"> <script>
+	function p_eidt() {
+		var profile = $('.profile');
+		profile
+				.html('<textarea name="profile" rows="10" cols="120" style="line-height:22px; padding:10px;">'
+						+ profile.html() + '</textarea>');
+		$('.profile-eidt').attr('onclick', 'p_chcek();').html('保存');
+	}
+	function p_chcek() {
+		var profile = $('textarea[name=profile]');
+		$.ajax({
+			type : "post",
+			url : "{:U('Center/profileEidt')}",
+			data : {
+				profile : profile.val()
+			},
+			dataType : "json",
+			success : function(data) {
+				if (data.status === 1) {
+					window.location.reload();
+					$('.profile-eidt').attr('onclick', 'p_eidt();').html('编辑');
+				}
+			}
+		})
+	}
+</script> </block>

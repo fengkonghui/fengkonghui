@@ -1,0 +1,54 @@
+<extend name="Public/main" />
+<!-- content -->
+<block name="style">
+	<style type="text/css">
+		.user-info{ border-bottom: 1px solid #ccc; border-top: 1px solid #ccc; padding: 5px 0; line-height: 24px;}
+		.user-info a { color: #bc0000;}
+	</style>
+</block>
+<block name="body">
+		<div class="gr_data">
+			<div class="da_right" style="float: inherit; margin:0 auto;">
+				<div class="spec_title da_title">
+					<div>&nbsp;</div>
+					<h2>会员中心</h2>
+					<div>&nbsp;</div>	
+				</div>
+				<div class="da_nav">
+					<div class="da_nav_left">
+						<div class="da_tx"><img src="{:avatars($Think.get.uid)}" /></div>
+						<div class="da_xinxi">
+							<p>超越好友</p>
+							<p>我要超越所有人，到达最顶级的时代</p>
+							<p><img src="__TMPL__/Public/img/geren_07.png" /><span>{:groupname($_info['group'])}</span></p>
+							<p><input type="image" src="__TMPL__/Public/img/geren_02.png" onclick="alert('栏目建设中，敬请关注');"/></p>
+						</div>
+					</div>
+					<div class="da_nav_right">
+						 <ul>
+						 	<li>
+						 		<a href="#"><img src="__TMPL__/Public/img/geren_03.png"></a>
+						 		<p>{$_info.redcoin}红途币</p>	
+						 	</li>
+						 	<li>
+						 		<a href="#" class="da_nav_def"><img src="__TMPL__/Public/img/geren_04.png"></a>
+						 		<p>{$_info.score}积分</p>	
+						 	</li>
+						 	<li>
+						 		<a href="#"><img src="__TMPL__/Public/img/geren_05.png"></a>
+						 		<p>邀请朋友</p>	
+						 	</li>
+						 	<li>
+						 		<a href="#"><img src="__TMPL__/Public/img/geren_06.png"></a>
+						 		<p>申请跳级</p>	
+						 	</li>
+						 </ul>						
+					</div>
+				</div>
+				<div class="da_bewrite">
+					<div class="da_bew_dingwei">个人简介</div>
+					<p class="profile">{$_info.profile}</p>
+				</div>
+			</div>
+		</div>
+</block>

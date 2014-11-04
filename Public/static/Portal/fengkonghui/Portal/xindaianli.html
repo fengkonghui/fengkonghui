@@ -1,0 +1,144 @@
+<extend name="Public/main" />
+<!-- content -->
+<block name="body">
+<div class="special">
+	<div class="spec_title xindai_title">
+		<div>&nbsp;</div>
+		<h2>实战直通车</h2>
+		<div>&nbsp;</div>
+	</div>
+	<div class="xindai_wq">
+		<a href="#wqcx" class="xindai_def_a">往期查询</a> <a href="#"
+			class="gz_tanchuceng">规则说明</a>
+	</div>
+	<div class="xindai_anli_01">
+		<div class="xindai_img">
+			<if condition="$left_xindai.image eq null"> <img
+				src="__TMPL__/Public/img/xindai_01.jpg" /> <else /> <img
+				src="{$left_xindai.image}" /> </if>
+		</div>
+		<div class="xindai_neirong">
+			<div class="xindai_neirong_title">
+				（案例直播）{$left_xindai.xd_title} <span>剩余时间：{$left_xindai.xd_surplus}</span>
+			</div>
+			<div class="xindai_neirong_a">
+				<div class="xindai_nr">案例介绍：</div>
+				<p>{$left_xindai.xd_jianjie}</p>
+			</div>
+			<div class="xindai_bu_jr">
+				<a
+					href="{:U('Xindaixiangqing/index',array('id'=>2,'xd_id'=>$left_xindai[ID]))}"><input
+					type="button" value="进入" name="" /></a>
+			</div>
+		</div>
+	</div>
+	<div class="xindai_anli_01">
+
+		<div class="xindai_neirong xindai_nr_left">
+			<div class="xindai_neirong_title">
+				（案例直播）{$right_xindai.xd_title} <span>剩余时间：{$right_xindai.xd_surplus}</span>
+			</div>
+			<div class="xindai_neirong_a">
+				<div class="xindai_nr">案例介绍：</div>
+				<p>{$right_xindai.xd_jianjie}</p>
+			</div>
+			<div class="xindai_bu_jr">
+				<a
+					href="{:U('Xindaixiangqing/index',array('id'=>2,'xd_id'=>$right_xindai[ID]))}"><input
+					type="button" value="进入" name="" /></a>
+			</div>
+
+		</div>	
+		<div class="xindai_vs">
+			<div class="xindai_vs1">
+			<foreach name="xindai" item="xindai">
+				<div class="xindai_vs_div">
+					
+						
+					
+					
+					<div class="xindai_txdw">
+						<if condition="getZF($xindai[ID]) eq null">
+							<img alt="" src="__TMPL__/Public/img/default.jpg" />
+						<else />
+							<img alt="" src="{$xindai.ID|getZF}" />
+						</if>
+					</div>
+					<div class="xindai_txdw2"><img src="__TMPL__/Public/img/xindai_04.png" /></div>
+					<div class="xindai_txdw1">
+						<if condition="getFF($xindai[ID]) eq null">
+							<img alt="" src="__TMPL__/Public/img/default.jpg" />
+						<else />
+							<img alt="" src="{$xindai.ID|getFF}" />
+						</if>
+					</div>
+					<div class="xindai_txdw3">
+						<div>{$xindai.xd_title}</div>
+						<div style="text-align:center;">
+							<a class="sbut" href="{:U('Xindaixiangqing/index',array('id'=>2,'xd_id'=>$xindai[ID]))}">进入</a>
+						</div>
+					</div>
+				</div>
+			</foreach>
+			</div>
+			<div class="xindai_txdw2">
+				<img src="__TMPL__/Public/img/xindai_04.png" />
+			</div>
+			<div class="xindai_txdw1">
+				<if condition="getFF($xindai[ID]) eq null"> <img alt=""
+					src="__TMPL__/Public/img/default.jpg" /> <else /> <img alt=""
+					src="{$xindai.ID|getFF}" /> </if>
+			</div>
+			<div class="xindai_txdw3">
+				<div>{$xindai.xd_title}</div>
+				<div style="text-align: center;">
+					<a
+						href="{:U('Xindaixiangqing/index',array('id'=>2,'xd_id'=>$xindai[ID]))}"><input
+						type="button" value="进入" /></a>
+				</div>
+			</div>
+		</div>
+		</foreach>
+	</div>
+	<if condition="$hasmore">
+	<div class="xindai_vs2">
+		<a href="{:U('xdal/index',array('id'=>2,'p'=>$page))}"
+			style="text-decoration: none; color: #fff;">加载更多</a>
+	</div>
+	</if>
+</div>
+<div class="xindai_fx">
+	<div class="spec_rig_top jishu_left_x xindai_fx1">
+		<h2>案例分享</h2>
+		<div>
+			<span><a style="color: #fff;'"
+				href="{:U('xindaixiangqing/wangyouanli',array('id'=>2))}">发布案例</a></span> <a
+				href="{:U('xdal/index',array('id'=>2,'type'=>'精华'))}">精华</a> | <a
+				href="{:U('xdal/index',array('id'=>2,'type'=>'最新'))}">最新</a> | <a
+				href="{:U('xdal/index',array('id'=>2,'type'=>'人气'))}">人气</a>
+		</div>
+	</div>
+	<div class="jishu_cont">
+		<foreach name="wangyou" item="arr"> <a
+			href="{:U('xindai/anlixiangqing',array('id'=>2,'wy_id'=>$arr[ID]))}">
+			<div class="jishu_cont1 xindai_fx2" style="height: 80px;">
+				<div class="touxiang corner">
+					<img src="__TMPL__/Public/img/spec_001.png" />
+				</div>
+				<p>{$arr.user_id|getName}&nbsp;</p>
+				<p>{$arr.wy_title}</p>
+			</div>
+		</a> </foreach>
+	</div>
+	<div class="page">{$Page1}</div>
+</div>
+</block>
+
+<block name="popup">
+<div class="gz">
+	<div>
+		<img src="__TMPL__/Public/img/gz_01.jpg" class="gz_img" /> <img
+			src="__TMPL__/Public/img/gz_02.png" />
+	</div>
+</div>
+</block>

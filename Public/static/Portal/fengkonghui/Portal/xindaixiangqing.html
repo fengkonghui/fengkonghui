@@ -1,0 +1,499 @@
+<extend name="Public/main" />
+<!-- content -->
+<block name="body">
+<div class="xiangqing_neirong">
+	<div class="neirong-tab">
+		<a href="javascript:void(0)" class="on">背景资料</a> <a
+			href="javascript:void(0)">贷款结果</a> <a href="javascript:void(0)">案例分析</a>
+	</div>
+	<div class="xiangqing_nr">
+		<div class="main_title">
+			<h2>{$xiangqing.xd_title}</h2>
+		</div>
+		<div class="xiangqing_top">
+			<p>
+				<span class="font_color">案例简介：</span>{$xiangqing.xd_jianjie}
+			</p>
+			<p>
+				<span class="font_color">借款金额：</span> {$xiangqing.loan_money}
+				&nbsp;&nbsp; <span class="font_color">借款期限：</span>
+				{$xiangqing.loan_qixian} &nbsp;&nbsp; <span class="font_color">借款用途：</span>
+				{$xiangqing.loan_yongtu} &nbsp;&nbsp; <span class="font_color">还款来源：</span>
+				{$xiangqing.repayment_laiyaun}
+			</p>
+		</div>
+		<!--背景资料-->
+		<div class="tabbody">
+			<div class="bg_blue_ash">
+				<div class="xiangqing_ziliao">
+					<div class="ziliao_title">
+						<h2>基本资料</h2>
+						<div>&nbsp;</div>
+					</div>
+					<table>
+						<colgroup>
+							<col width="300" />
+							<col width="150" />
+						</colgroup>
+						<tr>
+							<td><span class="font_color">主 业 务：</span>{$xiangqing.xd_business}</td>
+							<td><span class="font_color">注册资金：</span>{$xiangqing.xd_register_funds}</td>
+						</tr>
+						<tr>
+							<td><span class="font_color">股权结构：</span>{$xiangqing.xd_structure}</td>
+							<td><span class="font_color">经营年限：</span>{$xiangqing.xd_management_time}</td>
+						</tr>
+						<tr class="bor_none">
+							<td><span class="font_color">企业文化：</span>{$xiangqing.xd_culture}</td>
+							<td><span class="font_color">资质荣誉：</span>{$xiangqing.xd_honor}</td>
+						</tr>
+					</table>
+				</div>
+				<div class="xiangqing_jiating">
+					<div class="jiating_title">
+						<h2>企业家情况</h2>
+						<div>&nbsp;</div>
+					</div>
+					<table>
+						<colgroup>
+							<col width="70" />
+							<col width="350" />
+						</colgroup>
+						<tr>
+							<td><span class="font_color">家庭情况：</span></td>
+							<td>{$xiangqing.xd_family}</td>
+						</tr>
+						<tr>
+							<td><span class="font_color">从业经历：</span></td>
+							<td>{$xiangqing.xd_experience}</td>
+						</tr>
+						<tr>
+							<td><span class="font_color">人脉资源：</span></td>
+							<td>{$xiangqing.xd_contacts}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="bg_blue_ash">
+				<div class="xiangqing_yunying">
+					<div class="yunying_title">
+						<h2>运营情况</h2>
+						<div>&nbsp;</div>
+					</div>
+					<table>
+						<colgroup>
+							<col width="70" />
+							<col width="350" />
+						</colgroup>
+						<tr>
+							<td><span class="font_color">业务模式：</span></td>
+							<td>{$xiangqing.xd_pattern}</td>
+						</tr>
+						<tr>
+							<td><span class="font_color">客户渠道：</span></td>
+							<td>{$xiangqing.xd_channel}</td>
+						</tr>
+						<tr>
+							<td><span class="font_color">结算规律：</span></td>
+							<td>{$xiangqing.xd_law}</td>
+						</tr>
+						<tr>
+							<td><span class="font_color">营销团队：</span></td>
+							<td>{$xiangqing.xd_team}</td>
+						</tr>
+					</table>
+				</div>
+				<div class="xiangqing_guanli">
+					<div class="guanli_title">
+						<h2>企业管理</h2>
+						<div>&nbsp;</div>
+					</div>
+					<table>
+						<colgroup>
+							<col width="70" />
+							<col width="350" />
+						</colgroup>
+						<tr>
+							<td><span class="font_color">组织职能：</span></td>
+							<td>{$xiangqing.xd_function}</td>
+						</tr>
+						<tr>
+							<td><span class="font_color">薪资激励：</span></td>
+							<td>{$xiangqing.xd_excitation}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="xiangqing_caiwu">
+				<div class="caiwu_title">
+					<h2>财务情况</h2>
+					<div>&nbsp;</div>
+				</div>
+				<table>
+					<colgroup>
+						<col width="70" />
+						<col width="350" />
+					</colgroup>
+					<tr>
+						<td><span class="font_color">收入情况：</span></td>
+						<td>{$xiangqing.xd_income}</td>
+					</tr>
+					<tr>
+						<td><span class="font_color">盈利情况：</span></td>
+						<td>{$xiangqing.xd_profit}</td>
+					</tr>
+					<tr>
+						<td colspan="2"><span class="font_color">库存情况：</span>{$xiangqing.xd_stock}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+							class="font_color">资产情况：</span>{$xiangqing.xd_assets}</td>
+					</tr>
+					<tr>
+						<td colspan="2"><span class="font_color">负债情况：</span>{$xiangqing.xd_liabilities}
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+							class="font_color">应收应付：</span>{$xiangqing.xd_sf}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<!--背景资料 结束-->
+		<!--贷款结果-->
+		<div class="tabbody" style="display: none;">
+			<div class="bg_blue_ash">
+				<div class="xiangqing_yunying xiangqing_conclusion">
+					<div class="yunying_title">
+						<h2>实际审贷结论</h2>
+						<div>&nbsp;</div>
+					</div>
+					<table>
+						<colgroup>
+							<col width="300" />
+							<col width="150" />
+						</colgroup>
+						<tr>
+							<td><span class="font_color">审核金额：</span>{$xiangqing.amount}</td>
+							<td><span class="font_color">审批期限：</span>{$xiangqing.examination}</td>
+						</tr>
+						<tr>
+							<td><span class="font_color">审批利率：</span>{$xiangqing.approval}</td>
+							<td><span class="font_color">还款方式：</span>{$xiangqing.payment}</td>
+						</tr>
+						<tr class="bor_none">
+							<td colspan="2"><span class="font_color">担保方式：</span>{$xiangqing.guarantee}</td>
+						</tr>
+					</table>
+				</div>
+				<div class="xiangqing_guanli xiangqing_conclusion"
+					style="padding-bottom: 10px;">
+					<div class="guanli_title">
+						<h2>还款情况</h2>
+						<div>&nbsp;</div>
+					</div>
+					<table>
+						<colgroup>
+							<col width="70" />
+							<col width="350" />
+						</colgroup>
+						<tr>
+							<td><span class="font_color">结清情况：</span></td>
+							<td>{$xiangqing.settlement}</td>
+						</tr>
+						<tr>
+							<td><span class="font_color">逾期情况：</span></td>
+							<td>{$xiangqing.overdue}</td>
+						</tr>
+						<tr>
+							<td><span class="font_color">坏帐催收：</span></td>
+							<td>{$xiangqing.collection}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!--贷款结果 结束-->
+		<!--案例点评-->
+		<div class="tabbody" style="display: none;">
+			<div class="xiangqing_caiwu">
+				<div class="caiwu_title">
+					<h2>案例点评</h2>
+					<div>&nbsp;</div>
+				</div>
+				<table style="width: 1030px;">
+					<tr>
+						<td>{$xiangqing.comments}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<!--案例点评 结束-->
+		<div class="xianqing_biaoqian">
+			<span class="font_color">标签：</span> 商贸 女装 地级市
+		</div>
+	</div>
+</div>
+<!-- 发表 -->
+<div class="bianlun">
+	<div class="zhengfang">
+		<div class="title_dw">
+			<img alt="" src="__TMPL__/Public/img/xiangqing_09.jpg">
+		</div>
+		<div class="title_dw1">
+			<div>{$zf_num}</div>
+			<img alt="" align="right" src="__TMPL__/Public/img/xiangqing_11.jpg">
+		</div>
+		<if condition="$zhengfang neq null"> <foreach name="zhengfang"
+			item="zhengfang">
+		<div class="spec_cont bianlun_div">
+			<if condition="$zhengfang.image eq null">
+			<div class='spec_cont_img'>
+				<img src="__TMPL__/Public/img/default.jpg">
+			</div>
+			<else />
+			<div class='spec_cont_img'>
+				<img src="{$zhengfang.image}">
+			</div>
+			</if>
+			<div class="spec_wz">
+				<a href="#" class="spec_cont_title">{$zhengfang.rev_title}</a>
+				<div class="content2">{$zhengfang.rev_content}</div>
+				<div class="botton02">
+					<p class="fl spec_datetime">{$zhengfang.rev_create_time|date="Y-m-d
+						H:i:s",###}</p>
+					<p class="fr spec_a_right">
+						<a href="#">阅读全部&gt;&gt;</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		</foreach> <else />
+		<p>没有文档</p>
+		</if>
+		<div class="anli_post">
+			<form action="" method="post" class="xiangqing_sub">
+				<input type="hidden" value="{$xiangqing.ID}" name="rev_review_hteme" />
+				<textarea name="rev_content" class="zf_pinglun1"></textarea>
+				<div>
+					<input type="submit" class="zf_pinglun" name="sub1" value="评论">
+				</div>
+			</form>
+		</div>
+		<if condition="$wzhengfang neq null"> <foreach name="wzhengfang"
+			item="wzhengfang">
+		<div class="fkzx_jilu xiangqing_huifu">
+			<div class="fkzx_tx">
+				<img src="__TMPL__/Public/img/fkzx_01.jpg" />
+			</div>
+			<div class="fkzx_neirong">
+				<p class="fkzx_name">
+					{$wzhengfang.postby|getName}<span>{$wzhengfang.create_time|date="Y-m-d
+						H:i:s",###}</span>
+				</p>
+				<p>{$wzhengfang.content}</p>
+				<p class="fkzx_huifu">
+					<a class="reply_btn" href="javascript:void(0));">回复</a>&nbsp;&nbsp;&nbsp;<a
+						class="open" href="javascript:void(0));"><span class="tihuan">展开</span><span
+						class="num">({$wzhengfang.num})</span></a>
+				</p>
+				<div class="reply" style="display: none;">
+					<form action="" method="post" class="xiangqing_sub">
+						<input type="hidden" name="replyfor" value="{$wzhengfang.id}">
+						<input type="hidden" value="29" name="rev_review_hteme">
+						<textarea name="rev_content" class="zf_pinglun1"></textarea>
+						<div>
+							<input type="submit" class="zf_pinglun" name="sub1" value="回复">
+						</div>
+					</form>
+				</div>
+				<foreach name="wzhengfang[replys]" item="row">
+				<div class="fkzx_jilu fkzx_jilu_l2 xiangqing_huifu"
+					style="display: none;">
+					<div class="fkzx_tx">
+						<img src="__TMPL__/Public/img/fkzx_01.jpg" />
+					</div>
+					<div class="fkzx_neirong">
+						<p class="fkzx_name">
+							{$row.postby|getName}<span>{$row.create_time|date="Y-m-d
+								H:i:s",###}</span>
+						</p>
+						<p>{$row.content}</p>
+					</div>
+				</div>
+				</foreach>
+			</div>
+		</div>
+		</foreach> <else />
+		<p>没有评论</p>
+		</if>
+		<if condition="$zf_hasmore">
+		<div class="xiangqing_jiazai">
+			<a style="text-decoration: none;"
+				href="{:U('xindaixiangqing/index',array('p_id'=>$page,'xd_id'=>$xd_id,'id'=>2))}">加载更多</a>
+		</div>
+		</if>
+	</div>
+	<div class="fanfang">
+		<div class="title_dw">
+			<img alt="" src="__TMPL__/Public/img/xiangqing_10.jpg">
+		</div>
+		<div class="title_dw1">
+			<div style="background-color: #E91404;">{$ff_num}</div>
+			<img alt="" align="right" src="__TMPL__/Public/img/xiangqing_11.jpg">
+		</div>
+		<if condition="$fanfang neq null"> <foreach name="fanfang"
+			item="fanfang">
+		<div class="spec_cont bianlun_div">
+			<if condition="$fanfang.image eq null">
+			<div class='spec_cont_img'>
+				<img src="__TMPL__/Public/img/default.jpg">
+			</div>
+			<else />
+			<div class='spec_cont_img'>
+				<img src="{$fanfang.image}">
+			</div>
+			</if>
+			<div class="spec_wz">
+				<a href="#" class="spec_cont_title">{$fanfang.rev_title}</a>
+				<p>{$fanfang.rev_content}</p>
+				<p>{$fanfang.rev_create_time}</p>
+				<p class="spec_a_right">
+					<a href="#">阅读全部&gt;&gt;</a>
+				</p>
+			</div>
+		</div>
+		</foreach> <else />
+		<p>没有文档</p>
+		</if>
+
+		<form action="" method="post" class="xiangqing_sub">
+			<input type="hidden" value="{$xiangqing.ID}" name="rev_review_hteme" />
+			<textarea name="rev_content" class="ff_pinglun1"></textarea>
+			<div>
+				<input type="submit" class="ff_pinglun" name="sub2" value="评论">
+			</div>
+		</form>
+		<if condition="$wfanfang neq null"> <foreach name="wfanfang"
+			item="wfanfang">
+		<div class="fkzx_jilu xiangqing_huifu">
+			<div class="fkzx_tx">
+				<img src="__TMPL__/Public/img/fkzx_01.jpg" />
+			</div>
+			<div class="fkzx_neirong">
+				<p class="fkzx_name">
+					{$wfanfang.postby|getName}<span>{$wzhengfang.create_time|date="Y-m-d
+						H:i:s",###}</span>
+				</p>
+				<p>{$wfanfang.content}</p>
+				<p class="fkzx_huifu">
+					<a class="reply_btn" href="javascript:void(0));">回复</a>&nbsp;&nbsp;&nbsp;<a
+						class="open" href="javascript:void(0));"><span class="tihuan">展开</span><span
+						class="num">({$wfanfang.num})</span></a>
+				</p>
+				<div class="reply" style="display: none;">
+					<form action="" method="post" class="xiangqing_sub">
+						<input type="hidden" name="replyfor" value="{$wfanfang.id}">
+						<input type="hidden" value="29" name="rev_review_hteme">
+						<textarea name="rev_content" class="zf_pinglun1"></textarea>
+						<div>
+							<input type="submit" class="zf_pinglun" name="sub1" value="回复">
+						</div>
+					</form>
+				</div>
+				<foreach name="wfanfang[replys]" item="row">
+				<div class="fkzx_jilu fkzx_jilu_l2 xiangqing_huifu"
+					style="display: none;">
+					<div class="fkzx_tx">
+						<img src="__TMPL__/Public/img/fkzx_01.jpg" />
+					</div>
+					<div class="fkzx_neirong">
+						<p class="fkzx_name">
+							{$row.postby|getName}<span>{$row.create_time|date="Y-m-d
+								H:i:s",###}</span>
+						</p>
+						<p>{$row.content}</p>
+					</div>
+				</div>
+				</foreach>
+			</div>
+		</div>
+		</foreach> <else />
+		<p>没有评论</p>
+		</if>
+		<if condition="$ff_hasmore">
+		<div class="xiangqing_jiazai">
+			<a style="text-decoration: none;"
+				href="{:U('xindaixiangqing/index',array('p_id'=>$page,'xd_id'=>$xd_id,'id'=>2))}">加载更多</a>
+		</div>
+		</if>
+	</div>
+	<div class="bian_img">
+		<img src="__TMPL__/Public/img/xiangqing_12.png" />
+	</div>
+</div>
+<div class="xiangqing_footer">
+	<div class="xq_xiangsi">
+		<div class="xq_footer_titil">
+			<div>&nbsp;</div>
+			<h2>相似案例</h2>
+			<div>&nbsp;</div>
+		</div>
+		<volist name="xiangsi" id="vo"> <a
+			href="{:U('xindai/anlixiangqing',array('id'=>2,'wy_id'=>$vo[ID]))}">
+			<div class="xiangqing_footer1">
+				<div>
+					<img src="__TMPL__/Public/img/spec_001.png" />
+				</div>
+				<p>{$vo.user_id|getName}</p>
+				<p>{$vo.wy_title}</p>
+			</div>
+		</a> </volist>
+	</div>
+	<div class="xq_xiangsi">
+		<div class="xq_footer_titil">
+			<div>&nbsp;</div>
+			<h2>红途技术</h2>
+			<div>&nbsp;</div>
+		</div>
+		<volist name="hongtujishu" id="vo">
+		<div class="xiangqing_footer1">
+			<div>
+				<img src="__TMPL__/Public/img/spec_001.png" />
+			</div>
+			<p>{$vo.user_id|getName}</p>
+			<p>{$vo.fx_title}</p>
+		</div>
+		</volist>
+	</div>
+	<div class="xq_xiangsi">
+		<div class="xq_footer_titil">
+			<div>&nbsp;</div>
+			<h2>红途实战</h2>
+			<div>&nbsp;</div>
+		</div>
+		<div class="xq_footer_img">
+			<img src="__TMPL__/Public/img/xiangqing_13.jpg" />
+		</div>
+	</div>
+</div>
+</block>
+<block name="script"> <script type="text/javascript">
+	$('.reply_btn').click(function() {
+		$(this).parent().siblings('.reply').toggle();
+	});
+	$('.open').click(function() {
+		if ($(this).parent().siblings('.xiangqing_huifu').is(':hidden')) {
+			$(this).parent().siblings('.xiangqing_huifu').show();
+			$(this).find('.tihuan').text('收起');
+			$(this).find('.num').hide();
+		} else {
+			$(this).parent().siblings('.xiangqing_huifu').hide();
+			$(this).find('.tihuan').text('展开');
+			$(this).find('.num').show();
+		}
+	});
+	$('.neirong-tab a').click(function() {
+		$(this).addClass('on').siblings().removeClass('on');
+		var i = $('.neirong-tab a').index(this);
+		$('.tabbody:eq('+i+')').show().siblings('.tabbody').hide();
+	});
+</script> </block>
+
+
+

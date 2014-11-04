@@ -1,0 +1,73 @@
+<extend name="Public/main" />
+<!-- content -->
+<block name="body">
+		<div class="gr_data">
+			<div class="da_left">
+				<include file="Member:center_nav" />
+			</div>
+			<div class="da_right">
+				<div class="spec_title da_title">
+					<div>&nbsp;</div>
+					<h1>个人资料</h1>
+					<div>&nbsp;</div>	
+				</div>
+				
+				<div class="user-info">
+					<form action="{:U()}" method="post">
+					<ul>
+						<li>
+							<label>所在城市：</label>
+							<select class="reg_input" name="user_city">
+								<volist name=":area()" id="vo">
+									<option value="{$vo.ID}" <if condition="$vo.ID eq strtoupper($user_info['user_city'])">selected = "selected"</if>>{$vo.area_title}</option>
+								</volist>
+							</select>
+						</li>
+						<li>
+							<label>公司类别：</label>
+							<select class="reg_input" name="company_type">
+								<volist name=":category()" id="vo">
+									<option value="{$vo.id}" <if condition="$vo.id eq strtoupper($user_info['company_type'])">selected = "selected"</if>>{$vo.name}</option>
+								</volist>
+							</select>
+						</li>
+						<li>
+							<label>职务级别：</label>
+							<input type="text" name="user_post_level" value="{$user_info.user_post_level}" class="reg_input" />
+						</li>
+					</ul>
+					<input type="submit" class="reg_sub" name="sub" value="修改" />
+					</form>
+				</div>
+				<div class="da_bewrite">
+					<div class="da_bew_dingwei">安全修改</div>
+					<a href="{:U('Center/password')}">修改密码</a>
+					<a href="{:U('Center/mobile')}">手机修改</a>
+				</div>
+			</div>
+		</div>
+</block>
+<block name="script">
+<script>
+	function p_eidt(){
+		var profile = $('.profile');
+		profile.html('<textarea name="profile" rows="10" cols="120" style="line-height:22px; padding:10px;">'+profile.html()+'</textarea>');
+		$('.profile-eidt').attr('onclick','p_chcek();').html('保存');
+	}
+	function p_chcek(){
+		var profile = $('textarea[name=profile]');
+		$.ajax({
+			type: "post",
+			url: "{:U('Center/profileEidt')}",
+			data: {profile:profile.val()},
+			dataType: "json",
+			success: function(data){
+				if(data.status===1){
+					window.location.reload();
+					$('.profile-eidt').attr('onclick','p_eidt();').html('编辑');
+				}
+			}
+		})
+	}
+</script>
+</block>
