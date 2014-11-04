@@ -1,0 +1,309 @@
+[ 2014-10-22T14:02:23+08:00 ] 180.173.4.180 /portal/member/dologin.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:02:39+08:00 ] 180.173.4.180 /portal/member/dologin.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:05:36+08:00 ] 180.173.4.180 /portal/member/dologin.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:05:39+08:00 ] 180.173.4.180 /portal/xdal/index.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:05:50+08:00 ] 180.173.4.180 /portal/center/personal.html
+ERR: 1146:Table 'fengkonghui.sp_topic_collect' doesn't exist
+ [ SQL语句 ] : select b.*
+				from sp_topic_collect a
+				left join sp_topic b
+				using(topic_id)
+				where user_id=12 order by a.collect_time
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : select a.*,b.user_login_name,b.ID,c.topic_id,c.topic_cid,c.title
+    		from sp_message a left join sp_members b
+    		on a.mes_from=b.ID left join sp_topic c on a.target_id=c.topic_id
+    		where a.mes_status=2 and mes_type='topic_comment' and a.mes_to=12 order by a.post_time desc
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : select a.*,b.user_login_name,b.ID,c.topic_id,c.topic_cid,c.title
+    		from sp_message a left join sp_members b
+    		on a.mes_from=b.ID left join sp_topic c on a.target_id=c.topic_id
+    		where a.mes_status=2 and mes_type='topic_answer' and a.mes_to=12 order by a.post_time desc
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : select a.*,b.user_login_name,b.ID,c.topic_id,c.topic_cid,c.title
+    		from sp_message a left join sp_members b
+    		on a.mes_from=b.ID left join sp_topic c on a.target_id=c.topic_id
+    		where a.mes_status=2 and mes_type='topic_collect' and a.mes_to=12 order by a.post_time desc
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:05:52+08:00 ] 180.173.4.180 /portal/center/means.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:05:53+08:00 ] 180.173.4.180 /portal/center/release/tab/case.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:05:54+08:00 ] 180.173.4.180 /portal/center/myanswer/tab/case.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:05:55+08:00 ] 180.173.4.180 /portal/center/group.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') )' at line 1
+ [ SQL语句 ] : SELECT * FROM `sp_group` WHERE ( `id` IN () ) 
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:05:55+08:00 ] 180.173.4.180 /portal/center/release/tab/case.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:05:56+08:00 ] 180.173.4.180 /portal/center/means.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:05:56+08:00 ] 180.173.4.180 /portal/center/means.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:05:58+08:00 ] 180.173.4.180 /portal/xdal/index/menu_id/2.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:06:33+08:00 ] 180.173.4.180 /portal/xdal/index/menu_id/2.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:06:34+08:00 ] 180.173.4.180 /portal/zhuanti/index/menu_id/3.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:06:34+08:00 ] 180.173.4.180 /portal/life/index/menu_id/4.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:06:35+08:00 ] 180.173.4.180 /portal/zhuanti/index/menu_id/3.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:06:37+08:00 ] 180.173.4.180 /portal/xdal/index/menu_id/2.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:06:39+08:00 ] 180.173.4.180 /portal/life/index/menu_id/4.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:06:39+08:00 ] 180.173.4.180 /portal/zhuanti/index/menu_id/3.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:06:42+08:00 ] 180.173.4.180 /portal/life/index/menu_id/4.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=12 ) LIMIT 1  
+
+[ 2014-10-22T14:13:26+08:00 ] 218.24.106.70 /portal/member/dologin.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=11 ) LIMIT 1  
+
+[ 2014-10-22T14:13:28+08:00 ] 218.24.106.70 /portal/xdal/index.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=11 ) LIMIT 1  
+
+[ 2014-10-22T14:13:32+08:00 ] 218.24.106.70 /portal/life/index/menu_id/4.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=11 ) LIMIT 1  
+
+[ 2014-10-22T14:13:33+08:00 ] 218.24.106.70 /portal/center/personal.html
+ERR: 1146:Table 'fengkonghui.sp_topic_collect' doesn't exist
+ [ SQL语句 ] : select b.*
+				from sp_topic_collect a
+				left join sp_topic b
+				using(topic_id)
+				where user_id=11 order by a.collect_time
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : select a.*,b.user_login_name,b.ID,c.topic_id,c.topic_cid,c.title
+    		from sp_message a left join sp_members b
+    		on a.mes_from=b.ID left join sp_topic c on a.target_id=c.topic_id
+    		where a.mes_status=2 and mes_type='topic_comment' and a.mes_to=11 order by a.post_time desc
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : select a.*,b.user_login_name,b.ID,c.topic_id,c.topic_cid,c.title
+    		from sp_message a left join sp_members b
+    		on a.mes_from=b.ID left join sp_topic c on a.target_id=c.topic_id
+    		where a.mes_status=2 and mes_type='topic_answer' and a.mes_to=11 order by a.post_time desc
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : select a.*,b.user_login_name,b.ID,c.topic_id,c.topic_cid,c.title
+    		from sp_message a left join sp_members b
+    		on a.mes_from=b.ID left join sp_topic c on a.target_id=c.topic_id
+    		where a.mes_status=2 and mes_type='topic_collect' and a.mes_to=11 order by a.post_time desc
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=11 ) LIMIT 1  
+
+[ 2014-10-22T14:13:34+08:00 ] 218.24.106.70 /portal/life/index/menu_id/4.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=11 ) LIMIT 1  
+
+[ 2014-10-22T14:13:35+08:00 ] 218.24.106.70 /portal/zhuanti/index/menu_id/3.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=11 ) LIMIT 1  
+
+[ 2014-10-22T14:13:36+08:00 ] 218.24.106.70 /portal/center/personal.html
+ERR: 1146:Table 'fengkonghui.sp_topic_collect' doesn't exist
+ [ SQL语句 ] : select b.*
+				from sp_topic_collect a
+				left join sp_topic b
+				using(topic_id)
+				where user_id=11 order by a.collect_time
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : select a.*,b.user_login_name,b.ID,c.topic_id,c.topic_cid,c.title
+    		from sp_message a left join sp_members b
+    		on a.mes_from=b.ID left join sp_topic c on a.target_id=c.topic_id
+    		where a.mes_status=2 and mes_type='topic_comment' and a.mes_to=11 order by a.post_time desc
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : select a.*,b.user_login_name,b.ID,c.topic_id,c.topic_cid,c.title
+    		from sp_message a left join sp_members b
+    		on a.mes_from=b.ID left join sp_topic c on a.target_id=c.topic_id
+    		where a.mes_status=2 and mes_type='topic_answer' and a.mes_to=11 order by a.post_time desc
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : select a.*,b.user_login_name,b.ID,c.topic_id,c.topic_cid,c.title
+    		from sp_message a left join sp_members b
+    		on a.mes_from=b.ID left join sp_topic c on a.target_id=c.topic_id
+    		where a.mes_status=2 and mes_type='topic_collect' and a.mes_to=11 order by a.post_time desc
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=11 ) LIMIT 1  
+
+[ 2014-10-22T14:13:41+08:00 ] 218.24.106.70 /portal/center/means.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=11 ) LIMIT 1  
+
+[ 2014-10-22T14:13:42+08:00 ] 218.24.106.70 /portal/center/release/tab/case.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=11 ) LIMIT 1  
+
+[ 2014-10-22T14:13:42+08:00 ] 218.24.106.70 /portal/center/myanswer/tab/case.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=11 ) LIMIT 1  
+
+[ 2014-10-22T14:13:43+08:00 ] 218.24.106.70 /portal/center/group.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') )' at line 1
+ [ SQL语句 ] : SELECT * FROM `sp_group` WHERE ( `id` IN () ) 
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=11 ) LIMIT 1  
+
+[ 2014-10-22T14:13:44+08:00 ] 218.24.106.70 /portal/center/myanswer/tab/case.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=11 ) LIMIT 1  
+
+[ 2014-10-22T14:13:46+08:00 ] 218.24.106.70 /portal/center/myanswer/tab/technology.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=11 ) LIMIT 1  
+
+[ 2014-10-22T14:13:47+08:00 ] 218.24.106.70 /portal/center/myanswer/tab/debate.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=11 ) LIMIT 1  
+
+[ 2014-10-22T14:13:50+08:00 ] 218.24.106.70 /portal/zhuanti/index/menu_id/3.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=11 ) LIMIT 1  
+
+[ 2014-10-22T14:13:52+08:00 ] 218.24.106.70 /portal/xdal/index/menu_id/2.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=11 ) LIMIT 1  
+
+[ 2014-10-22T14:13:56+08:00 ] 218.24.106.70 /portal/xdal/row/menu_id/2/id/47.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' ) LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `bq` FROM `sp_biaoqian` WHERE ( ID=, ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' ) LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `bq` FROM `sp_biaoqian` WHERE ( ID=, ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `bq` FROM `sp_biaoqian` WHERE ( ID= ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%d ) LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `user_login_name` FROM `sp_members` WHERE ( ID = %d ) LIMIT 1  
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=11 ) LIMIT 1  
+
+[ 2014-10-22T14:14:02+08:00 ] 218.24.106.70 /portal/zaixian/index.html
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `sp_message`
+ERR: 1146:Table 'fengkonghui.sp_message' doesn't exist
+ [ SQL语句 ] : SELECT COUNT(*) AS tp_count FROM `sp_message` WHERE ( mes_status=2 and mes_to=11 ) LIMIT 1  
+

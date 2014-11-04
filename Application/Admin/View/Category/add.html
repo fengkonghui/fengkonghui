@@ -1,0 +1,80 @@
+<extend name="Public/main" />
+
+<block name="style">
+	<script type="text/javascript">
+		var catid = "12";
+	</script>
+	<style type="text/css">
+		.col-auto {
+			overflow: hidden;
+			_zoom: 1;
+			_float: left;
+			border: 1px solid #c2d1d8;
+		}
+		.col-right {
+			float: right;
+			width: 210px;
+			overflow: hidden;
+			margin-left: 6px;
+			border: 1px solid #c2d1d8;
+		}
+
+		body fieldset {
+			border: 1px solid #D8D8D8;
+			padding: 10px;
+			background-color: #FFF;
+		}
+		body fieldset legend {
+			background-color: #F9F9F9;
+			border: 1px solid #D8D8D8;
+			font-weight: 700;
+			padding: 3px 8px;
+		}
+		.content_attr {
+			border: 1px solid #CCC;
+			padding: 5px 8px;
+			background: #FFC;
+			margin-top: 6px
+		}
+		.list-dot{ padding-bottom:10px}
+		.list-dot li,.list-dot-othors li{padding:5px 0; border-bottom:1px dotted #c6dde0; font-family:"宋体"; color:#bbb; position:relative;_height:22px}
+		.list-dot li span,.list-dot-othors li span{color:#004499}
+		.list-dot li a.close span,.list-dot-othors li a.close span{display:none}
+		.list-dot li a.close,.list-dot-othors li a.close{ background: url("__STATIC__/images/cross.png") no-repeat left 3px; display:block; width:16px; height:16px;position: absolute;outline:none;right:5px; bottom:5px}
+		.list-dot li a.close:hover,.list-dot-othors li a.close:hover{background-position: left -46px}
+		.list-dot-othors li{float:left;width:24%;overflow:hidden;}
+	</style>
+</block>
+
+<block name="body">
+	<div class="wrap J_check_wrap">
+		<div class="nav">
+			<ul class="cc">
+				<li><a href="{:U('Category/index')}">所有类别</a></li>
+				<li class="current"><a href="{:U('Category/add')}">添加类别</a></li>
+			</ul>
+		</div>
+		<form name="myform" id="myform" action="{:U()}" method="post" class="J_ajaxForms">
+			<div class="col-auto">
+				<div class="h_a">添加区域</div>
+				<div class="table_full">
+					<table width="100%">
+						<tr>
+							<th width="80">名称 </th>
+							<td>
+								<input type="text" style="width:400px;" name="name" id="title" value="" style="color:" class="input input_hd J_title_color"  onkeyup="strlen_verify(this, 'title_len', 160)" />
+								<span class="must_red">*</span>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="btn_wrap" style="z-index:999;text-align: center;">
+				<div class="btn_wrap_pd">
+					<button class="btn btn_submit J_ajax_submit_btn"type="submit">提交</button>
+					<button class="btn J_ajax_close_btn"type="submit">关闭</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</block>

@@ -1,0 +1,52 @@
+<extend name="Public/main" />
+<block name="body">
+	<div class="wrap J_check_wrap">
+		<div class="nav">
+			<ul class="cc">
+				<li class="current"><a href="javascript:;">所有专家</a></li>
+				<li><a target="_self" href="{:U('fengkongjishu/expertAdd')}">添加专家</a></li>
+			</ul>
+		</div>
+		<form class="J_ajaxForm" action="" method="post">
+			<div class="table_list">
+				<table width="100%">
+					<colgroup>
+						<col width="16">
+						<col width="40">
+						<col width="200">
+						<col width="200">
+						<col width="280">
+					</colgroup>
+					<thead>
+						<tr>
+							<td><label><input type="checkbox" class="J_check_all" data-direction="x" data-checklist="J_check_x"></label></td>
+							<td>ID</td>
+							<td>名称</td>
+							<td>创建时间</td>
+							<td>操作</td>
+						</tr>
+					</thead>
+					<foreach name="_list" item="vo">
+						<tr>
+							<td><input type="checkbox" class="J_check" data-yid="J_check_y" data-xid="J_check_x" name="ids[]" value="{$vo.ID}" ></td>
+							<td><a>{$vo.id}</a></td>
+							<td>{:getName($vo['uid'])}</td>
+							<td>{$vo.dataline|date="Y-m-d",###}</td>
+							<td>
+								<a href="{:U('fengkongjishu/expertDel',array('id'=>$vo[id]))}" class="J_ajax_del" >删除</a>
+							</td>
+						</tr>
+					</foreach>
+				</table>
+				<div class="p10"><div class="pages"> {$Page} </div> </div>
+
+			</div>
+			<div>
+				<div class="btn_wrap_pd">
+					<label class="mr20"><input type="checkbox" class="J_check_all" data-direction="y" data-checklist="J_check_y">全选</label>                
+					<button class="btn J_ajax_submit_btn" type="submit" data-action="{:u('fengkongjishu/expertDel')}" data-subcheck="true" data-msg="你确定删除吗？">删除</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</block>

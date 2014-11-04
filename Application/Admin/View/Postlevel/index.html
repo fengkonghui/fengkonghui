@@ -1,0 +1,52 @@
+<extend name="Public/main" />
+<block name="body">
+<div class="wrap J_check_wrap">
+	<div class="nav">
+		<ul class="cc">
+			<li class="current"><a href="javascript:;">所有职务级别</a></li>
+			<li><a target="_self" href="{:U('add')}">添加职务级别</a></li>
+		</ul>
+	</div>
+	<form class="J_ajaxForm" action="{:U()}" method="post">
+		<div class="table_list">
+			<table width="100%">
+				<colgroup>
+					<col width="50">
+					<col width="400">
+					<col width="180">
+				</colgroup>
+				<thead>
+					<tr>
+						<td><label><input type="checkbox" class="J_check_all"
+								data-direction="x" data-checklist="J_check_x"></label></td>
+						<td>名称</td>
+						<td>操作</td>
+					</tr>
+				</thead>
+				<volist name="rows" id="vo">
+				<tr>
+					<td><input type="checkbox" class="J_check"
+						data-yid="J_check_y" data-xid="J_check_x" name="ids[]"
+						value="{$vo.id}"></td>
+					<td><a href="#" target="_blank"> <span style="">{$vo.name}</span></a>
+					</td>
+					<td><a target="_self"
+						href="{:U('Postlevel/edit',array('id'=>$vo[id]))}" target="_blank">修改</a>|
+						<a href="{:U('Postlevel/delete',array('ID'=>$vo[id]))}"
+						class="J_ajax_del">删除</a></td>
+				</tr>
+				</volist>
+			</table>
+		</div>
+		<div>
+			<div class="btn_wrap_pd">
+				<label class="mr20"><input type="checkbox"
+					class="J_check_all" data-direction="y" data-checklist="J_check_y">全选</label>
+				<button class="btn J_ajax_submit_btn" type="submit"
+					data-action="{:U('Postlevel/delete')}" data-subcheck="true"
+					data-msg="你确定删除吗？">删除</button>
+			</div>
+		</div>
+	</form>
+</div>
+</block>

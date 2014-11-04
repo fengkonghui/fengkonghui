@@ -1,0 +1,32 @@
+<extend name="Public/main" />
+<block name="body">
+	<div class="wrap jj">
+		<include file="Public/nav"/>
+		<div class="common-form">
+			<div class="table_list">
+				<table width="100%" cellspacing="0" class="table_form">
+					<thead>
+						<tr>
+							<td align="left">手机号</td>
+							<td>短信内容</td>
+							<td>状态</td>
+							<td>发送时间</td>
+						</tr>
+					</thead>
+					<tbody>
+					<volist name="smslog" id="val">
+						<tr class="collapsed">
+							<td>
+								{$val.phone}
+							</td>
+							<td>{$val.content}</td>
+							<td>{$val.status}</td>
+							<td>{$val.dateline|date="Y-m-d H:t:s",###}</td>
+						</tr>
+					</volist>
+					</tbody>
+				</table>
+			</div>
+		</div> 
+	</div>
+</block>

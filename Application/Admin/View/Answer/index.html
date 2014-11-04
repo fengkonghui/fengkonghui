@@ -1,0 +1,41 @@
+<extend name="Public/main" />
+<block name="body">
+
+	<div class="wrap jj">
+		<div class="nav">
+			<ul class="cc">
+				<li class="current"><a href="javascript://">所有</a></li>
+			</ul>
+		</div>
+		<div class="common-form">
+			<div class="table_list">
+				<table width="100%">
+					<thead>
+						<tr>
+							<td align='center'>ID</td>
+							<td align='center'>发表人</td>
+							<td>内容</td>
+							<td>时间</td>
+							<td align='center'>操作</td>
+						</tr>
+					</thead>
+					<tbody>
+					<foreach name="answer" item="vo">
+						<tr>
+							<td align='center'>{$vo.id}</td>
+							<td align='center'>
+								<a href="{:U('/Portal/member/user/',array('uid'=>$auc['uid']))}" target="_blank">{:getMemberField('user_nickname',$auc['uid'])}</a>
+							</td>
+							<td>{$vo.content}</td>
+							<td>{$vo.time|date='Y-m-d H:i:s',###}</td>
+							<td align='center'>
+								<a href="{:U('answer/delete',array('id'=>$vo['id']))}" class="J_ajax_del" >删除</a>
+							</td>
+						</tr>
+					</foreach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</block>

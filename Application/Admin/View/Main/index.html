@@ -1,0 +1,14 @@
+<extend name="Public/main" />
+<block name="body">
+	<div class="wrap">
+		<div id="home_toptip"></div>
+		<h2 class="h_a">系统信息</h2>
+		<div class="home_info">
+			<ul>
+				<volist name="server_info" id="vo">
+					<li> <em>{$key}</em> <span>{$vo}</span> </li>
+				</volist>
+			</ul>
+		</div>
+	</div>
+</block>
