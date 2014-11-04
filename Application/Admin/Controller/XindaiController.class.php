@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace Admin\Controller;
 
@@ -28,7 +28,7 @@ class XindaiController extends AdminbaseController {
 			$_POST ['xd_biaoqian'] = ','.implode ( ',', $_POST ['xd_biaoqian'] ).',';
 			if ($this->xindai_obj->create ()) {
 				if (false !== $this->xindai_obj->add ()) {
-					$this->success ( "保存成功！", U ( "xindai/index" ) );
+					$this->success ( "保存成功", U ( "xindai/index" ) );
 				} else {
 					$this->error ( '保存失败' );
 				}
