@@ -2754,14 +2754,17 @@ table .bor_none td {
 
 .member-list li.myanswer1 {
 	width: 305px;
+	overflow: hidden;
 }
 
 .member-list li.myanswer2 {
-	width: 530px
+	width: 530px;
+	overflow: hidden;
 }
 
 .member-list li.myanswer3 {
-	width: 100px
+	width: 100px;
+	overflow: hidden;
 }
 
 .pages div {
@@ -3174,3 +3177,12 @@ table .bor_none td {
 .period-case .case-list .li dl dt.month { background: url('../img/month.png') no-repeat 0 5px; padding-left: 22px; margin-left: -9px;}
 .period-case .case-list .li dl dt .day { background: url('../img/day.png') no-repeat; width: 110px; height: 26px; line-height: 26px; text-align: center; color: #fff; display: block;}
 .period-case .case-list .li dl dd { height: 45px; line-height: 45px; padding-left: 150px; background: url('../img/we.png') no-repeat 126px 16px;}
+
+/** 底部隐藏 **/
+#footer{
+	display:none;
+}
+
+.hide{
+	display: none;
+}

@@ -22,11 +22,11 @@
 				<span>密码</span> <br /> <input type="password" name="passwd"
 					maxlength="15" value="" class="login_input login_pwd" />
 			</div>
-			<a href="{:U('Member/register')}">免费注册</a> | <a href="">忘记密码？</a> <br />
+			<a href="{:U('Member/register')}">免费注册</a> | <a href="{:U('member/retrieve')}">忘记密码？</a> <br />
 			<input type="submit" name="sub" value="登录" class="login_submit" />
 
 			<div class="login_qh">
-				直接使用区号登录：<a href="{:U('/Portal/user/login',array('type'=>'weibo'))}"><img src="__TMPL__/Public/img/login_04.gif" />
+				直接使用社区账号登录：<a href="{:U('/Portal/user/login',array('type'=>'weibo'))}"><img src="__TMPL__/Public/img/login_04.gif" />
 					微博</a>&nbsp;&nbsp;&nbsp;<a href="{:U('/Portal/user/login',array('type'=>'qq'))}"><img
 					src="__TMPL__/Public/img/login_01.jpg" />QQ</a>
 			</div>
@@ -41,7 +41,7 @@
 			<br /> <input type="text" name="user_login_name" class="login_input" />
 			<br /> <span>密码</span> <br /> <input type="password" name="passwd"
 				value="" class="login_input login_pwd" /> <br /> <a
-				href="{:U('Member/register')}">免费注册</a> | <a href="">忘记密码？</a> <br />
+				href="{:U('Member/register')}">免费注册</a> | <a href="{:U('member/retrieve')}">忘记密码？</a> <br />
 			<input type="submit" name="sub" value="登录" class="login_submit" />
 		</form>
 	</div>

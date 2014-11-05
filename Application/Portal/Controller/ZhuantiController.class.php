@@ -199,6 +199,9 @@ class ZhuantiController extends HomeBaseController {
 	 * *
 	 */
 	public function pdfTuijian() {
+		if (! $_SESSION ["MEMBER_id"]) {
+			$this->error('您还没有登录，请登录',U('Member/index'));
+		}
 		// 通过id查询数据
 		$rs = M ( 'tuijian_yuedui' )->where ( "ID=%d", array (
 				I ( 'get.ty_id' ) 

@@ -48,5 +48,5 @@ function user_post_level($id){
 
 //所在城市
 function user_city($id){
-	return M('area')->where(array('id'=>$id))->getField('area_title');
+	return M('area')->where(array('ID'=>$id))->getField('area_title');
 }

@@ -466,4 +466,50 @@ class MemberController extends HomeBaseController {
 		$this->uid = I ( 'get.uid' );
 		$this->display();
 	}
+	
+	/**
+	 * 密码找回
+	 * **/
+	public function retrieve(){
+		if(IS_POST){
+			if (strlen ( $_POST ['password'] ) < 5 || strlen ( $_POST ['password'] ) > 12) {
+				$this->error ( "密码长度至少5位，最多12位！" );
+				exit ();
+			}
+			
+			//查询用户id
+			$id = M('members')->where(array('user_tel'=>I('post.user_tel')))->getField('ID');
+			$data['ID'] = $id;
+			$data['user_pass'] = encode ( I('post.password'), C ( 'DATA_AUTH_KEY' ) );
+			$data['last_login_time'] = time();
+			if(M('members')->save($data)){
+				$this->success('重置成功，请重新登录',U('member/index'));
+			}else {
+				$this->error('重置失败');
+			}
+		}else{
+			$this->display();
+		}
+	}
+	
+	//密码找回生成验证码
+	public function sendPhone_1() {
+		// 随机码
+		$code = rand ( 100000, 999999 );
+		if ($this->sendMESSAGES ( $phone, '【' . C ( 'SENDSMS' ) . '】您的验证码为：' . $code )) {
+			session ( 'tel_yz', $code );
+			$this->success ( "发送成功！" );
+		} else {
+			session ( 'tel_yz', null );
+			$this->error ( "发送失败！" );
+		}
+	}
+	//异步请求 验证码
+	public function ajaxyz(){
+		if(I('post.yz')==session('tel_yz')){
+			echo 1;
+		}else{
+			echo 0;
+		}
+	}
 }

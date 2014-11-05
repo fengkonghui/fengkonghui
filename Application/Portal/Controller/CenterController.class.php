@@ -73,6 +73,9 @@ class CenterController extends HomeBaseController {
 	// 个人资料
 	public function means() {
 		$this->checklogin ();
+		
+		//查询职务
+		$this->rows = M('members_post_level')->select();
 		$memid = $_SESSION ["MEMBER_id"];
 		if (IS_POST) {
 			M ( 'Members' )->where ( "id=%d", array (
@@ -291,7 +294,7 @@ class CenterController extends HomeBaseController {
 		) )->getField ( 'user_tel' );
 		// 随机码
 		$code = rand ( 100000, 999999 );
-		if ($this->sendMESSAGES ( $user_tel, '【' . C ( 'SENDSMS' ) . '】你正在注册' . C ( 'SENDSMS' ) . '，校验码：' . $code . '打死都不能告诉别人哦！' )) {
+		if ($this->sendMESSAGES ( $user_tel, '【' . C ( 'SENDSMS' ) . '】你正在注册' . C ( 'SENDSMS' ) . '，校验码：' . $code )) {
 			session ( 'tel_yz', $code );
 			$this->success ( "成功！" );
 		} else {
@@ -407,6 +410,7 @@ class CenterController extends HomeBaseController {
 					'cid' => I('post.cid'),
 					'name' => I('post.name'),
 					'chcek' => 1,
+					'dateline'=>time(),
 				));
 			
 				$result = M('GroupExtend')->add(array(
@@ -451,5 +455,17 @@ class CenterController extends HomeBaseController {
 				break;
 		}
 		$this->display('Member:integral');
+	}
+	
+	//签到，添加积分
+	function add_jf(){
+		$op = I('qiandao');
+		if($_SESSION['qiandao'] != 1){
+			echo $this->integrals($op);
+			$_SESSION['qiandao'] = 1;
+		}else{
+			echo 0;
+		}
+		
 	}
 }
