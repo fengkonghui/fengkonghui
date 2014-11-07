@@ -28,27 +28,22 @@
 		</div>
 	</div>
 	<div style="clear: both;"></div>
-	<div class="life_ask bgWhite mp15">
+	<div class="life_group bgWhite mp15">
 		<div class="life_title">
-			<h2>问答专区</h2>
+			<h2>小组</h2>
 		</div>
-		<div class="life_nav">
-			<div class="term fl">
-				<a href="javascript://" data-status="hit">热门</a>
-				|
-				<a href="javascript://" data-status="new" class="chosen">最新</a>
-				|
-				<a href="javascript://" data-status="wait">等待回复</a>
-			</div>
-			<div class="search fr">
-				<input class="keywords" type="text" name="keywords">
-				<input class="submit" type="submit" value="搜索">
-			</div>
-			<a href="javascript://" class="release questions fr">发布问题</a>
+		<div class="life_nav nav_tab">
+			<foreach name="group_class" item="vo"> <a
+				href="javascript://" class="{$key==0 ? 'on' : ''}"
+				data-id="{$vo.id}">
+				{$vo.name}
+				<i></i>
+			</a> </foreach>
 		</div>
 		<ul class="db"></ul>
 		<div class="h20"></div>
 	</div>
+	<div style="clear: both;"></div>
 	<div style="clear: both;"></div>
 	<!-- 
 		<div class="life_read bgWhite mp15">
@@ -78,22 +73,29 @@
 		</div>
 		 -->
 	<div style="clear: both;"></div>
-	<div class="life_group bgWhite mp15">
+		<div class="life_ask bgWhite mp15">
 		<div class="life_title">
-			<h2>小组</h2>
+			<h2>问答专区</h2>
 		</div>
-		<div class="life_nav nav_tab">
-			<foreach name="group_class" item="vo"> <a
-				href="javascript://" class="{$key==0 ? 'on' : ''}"
-				data-id="{$vo.id}">
-				{$vo.name}
-				<i></i>
-			</a> </foreach>
+		<div class="life_nav">
+			<div class="term fl">
+				<a href="javascript://" data-status="hit">热门</a>
+				|
+				<a href="javascript://" data-status="new" class="chosen">最新</a>
+				|
+				<a href="javascript://" data-status="wait">等待回复</a>
+			</div>
+			<div class="search fr">
+				<input class="keywords" type="text" name="keywords">
+				<input class="submit" type="submit" value="搜索">
+			</div>
+			<a href="javascript://" class="release questions fr">发布问题</a>
 		</div>
 		<ul class="db"></ul>
 		<div class="h20"></div>
 	</div>
-	<div style="clear: both;"></div>
+	
+
 	<div class="life_feeling bgWhite mp15">
 		<div class="life_title">
 			<h2>信贷感悟</h2>
