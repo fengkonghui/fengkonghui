@@ -15,7 +15,7 @@ $config = array (
 	        'WEIBO_APPKEY'      => '1332614169',
 	        'WEIBO_APPSECRETKEY'=> 'e5162a80f92f0f5110220adbf7542052',
 	        'WEIBO_SCOPE'       => '',
-	        'WEIBO_CALLBACK'    => 'http://hongtuwang.com/Portal/user/auth/type/weibo',
+	        'WEIBO_CALLBACK'    => 'http://fengkong.hongtuwang.com/portal/user/auth/type/weibo',
 	    ),
 );
 
