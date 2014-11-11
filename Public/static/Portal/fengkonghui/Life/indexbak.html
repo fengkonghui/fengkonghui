@@ -1,56 +1,51 @@
 <extend name="Public/main" />
 <block name="body">
-<div class="life clearfix">
-	<div class="life_index clearfix">
-		<div class="life_ad fl" id="focus">
-			<ul>
+	<div class="life clearfix">
+		<div class="life_index clearfix">
+			<div class="life_ad fl" id="focus">
+				<ul>
 				<volist id="row" name="img"></volist>
-				<li>
-					<a href="http://fengkong.ke.qq.com" target="_blank">
-						<img src="{$row.url}" width="910" height="205" />
-					</a>
-				</li>
-			</ul>
-		</div>
-		<div class="life_info bgWhite fr">
-			<h2 class="hd">
-				<span>最新消息</span>
-				<a href="javascript://" target="_blank" class="fr"
-					style="display: none">更多&gt;&gt;</a>
-			</h2>
-			<ul class="life_ul">
-				<foreach name="news" item="vo">
-				<li>
-					<a href="{:U('news',array('id'=>$vo['id']))}" target="_blank">{:nv_cutstr($vo['title'],38)}</a>
-				</li>
-				</foreach>
-			</ul>
-		</div>
-	</div>
-	<div style="clear: both;"></div>
-	<div class="life_ask bgWhite mp15">
-		<div class="life_title">
-			<h2>问答专区</h2>
-		</div>
-		<div class="life_nav">
-			<div class="term fl">
-				<a href="javascript://" data-status="hit">热门</a>
-				|
-				<a href="javascript://" data-status="new" class="chosen">最新</a>
-				|
-				<a href="javascript://" data-status="wait">等待回复</a>
+					<li>
+						<a href="http://fengkong.ke.qq.com" target="_blank">
+							<img src="{$row.url}" width="910" height="205" />
+						</a>
+					</li>
+				</ul>
 			</div>
-			<div class="search fr">
-				<input class="keywords" type="text" name="keywords">
-				<input class="submit" type="submit" value="搜索">
+			<div class="life_info bgWhite fr">
+				<h2 class="hd">
+					<span>最新消息</span>
+					<a href="javascript://" target="_blank" class="fr" style="display:none">更多&gt;&gt;</a>
+				</h2>
+				<ul class="life_ul">
+					<foreach name="news" item="vo">
+					<li><a href="{:U('news',array('id'=>$vo['id']))}" target="_blank">{:nv_cutstr($vo['title'],38)}</a></li>
+					</foreach>
+				</ul>
 			</div>
-			<a href="javascript://" class="release questions fr">发布问题</a>
 		</div>
-		<ul class="db"></ul>
-		<div class="h20"></div>
-	</div>
-	<div style="clear: both;"></div>
-	<!-- 
+		<div style="clear: both;"></div>
+		<div class="life_ask bgWhite mp15">
+			<div class="life_title">
+				<h2>问答专区</h2>
+			</div>
+			<div class="life_nav">
+				<div class="term fl">
+					<a href="javascript://" data-status="hit">热门</a>|
+					<a href="javascript://" data-status="new" class="chosen">最新</a>|
+					<a href="javascript://" data-status="wait">等待回复</a>
+				</div>
+				<div class="search fr">
+					<input class="keywords" type="text" name="keywords">
+					<input class="submit" type="submit" value="搜索">
+				</div>
+				<a href="javascript://" class="release questions fr">发布问题</a>
+			</div>
+			<ul class="db"></ul>
+			<div class="h20"></div>
+		</div>
+		<div style="clear: both;"></div>
+		<!-- 
 		<div class="life_read bgWhite mp15">
 			<ul>
 				<foreach name="rec_yuedui" item="vo">
@@ -77,39 +72,33 @@
 			</ul>
 		</div>
 		 -->
-	<div style="clear: both;"></div>
-	<div class="life_group bgWhite mp15">
-		<div class="life_title">
-			<h2>小组</h2>
+		<div style="clear: both;"></div>
+		<div class="life_group bgWhite mp15">
+			<div class="life_title">
+				<h2>小组</h2>
+			</div>
+			<div class="life_nav nav_tab">
+				<foreach name="group_class" item="vo">
+					<a href="javascript://" class="{$key==0 ? 'on' : ''}" data-id="{$vo.id}">{$vo.name}<i></i></a>
+				</foreach>
+			</div>
+			<ul class="db"></ul>
+			<div class="h20"></div>
 		</div>
-		<div class="life_nav nav_tab">
-			<foreach name="group_class" item="vo"> <a
-				href="javascript://" class="{$key==0 ? 'on' : ''}"
-				data-id="{$vo.id}">
-				{$vo.name}
-				<i></i>
-			</a> </foreach>
+		<div style="clear: both;"></div>
+		<div class="life_feeling bgWhite mp15">
+			<div class="life_title">
+				<h2>信贷感悟</h2>
+			</div>
+			<div class="life_nav nav_tab">
+				<foreach name="articles_type" item="vo">
+					<a href="javascript://" class="{$key==0 ? 'on' : ''}" data-id="{$vo.id}">{$vo.name}<i></i></a>
+				</foreach>
+			</div>
+			<ul class="db"></ul>
+			<div class="h20"></div>
 		</div>
-		<ul class="db"></ul>
-		<div class="h20"></div>
 	</div>
-	<div style="clear: both;"></div>
-	<div class="life_feeling bgWhite mp15">
-		<div class="life_title">
-			<h2>信贷感悟</h2>
-		</div>
-		<div class="life_nav nav_tab">
-			<foreach name="articles_type" item="vo"> <a
-				href="javascript://" class="{$key==0 ? 'on' : ''}"
-				data-id="{$vo.id}">
-				{$vo.name}
-				<i></i>
-			</a> </foreach>
-		</div>
-		<ul class="db"></ul>
-		<div class="h20"></div>
-	</div>
-</div>
 </block>
 <block name="script">
 <div class="alert ques" style="display: none">
@@ -244,7 +233,7 @@ $(function() {
 			common();
 		}, "json");
 	};
-	ask('','','0');
+	ask('','','1');
 
 	//问答排序
 	$(".life_ask .term a").click(function(){
@@ -365,10 +354,7 @@ $(function() {
 				window.location.href = "{:U('/Portal/Member/index')}";return false;
 			}
 			var questions = $("textarea[name='questions']");
-			var que = questions.val();
 			if(questions.val() == ''){
-				alert("问题描述不能为空!");return false;
-			}else if($.trim(que)==''){
 				alert("问题描述不能为空!");return false;
 			}
 			$.ajax({
@@ -429,13 +415,11 @@ $(function() {
 
 			//退出小组
 			$(".life_group .group_db .submit-del").click(function(){
-				if(confirm('确定退出？')){
-					var submit = $(this);
-					var id = submit.data('id');
-					$.post("/Portal/life/ajax.html", {type:'exit_group',id: id},function (d){
-						alert(d.info);submit.text('加入小组').attr('class','submit');location.reload();
-					}, "json");
-				}
+				var submit = $(this);
+				var id = submit.data('id');
+				$.post("/Portal/life/ajax.html", {type:'exit_group',id: id},function (d){
+					alert(d.info);submit.text('加入小组').attr('class','submit');location.reload();
+				}, "json");
 			});
 		}, "json");
 	};group();
@@ -474,4 +458,5 @@ $(function() {
 		feeling();
 	});
 });
-</script> </block>
+</script>
+</block>
