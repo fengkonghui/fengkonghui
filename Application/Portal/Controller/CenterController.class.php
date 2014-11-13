@@ -74,8 +74,8 @@ class CenterController extends HomeBaseController {
 	public function means() {
 		$this->checklogin ();
 		
-		//查询职务
-		$this->rows = M('members_post_level')->select();
+		// 查询职务
+		$this->rows = M ( 'members_post_level' )->select ();
 		$memid = $_SESSION ["MEMBER_id"];
 		if (IS_POST) {
 			M ( 'Members' )->where ( "id=%d", array (
@@ -174,10 +174,17 @@ class CenterController extends HomeBaseController {
 		$memid = $_SESSION ["MEMBER_id"];
 		$tab = I ( 'get.tab' );
 		$myanswer = array ();
-		$where ['user_id'] = array (
-				'eq',
-				$memid 
-		);
+		if ($tab == 'debate') {
+			$where ['postby'] = array (
+					'eq',
+					$memid 
+			);
+		} else {
+			$where ['user_id'] = array (
+					'eq',
+					$memid 
+			);
+		}
 		switch ($tab) {
 			case 'technology' : // 技术
 				$result = $this->getPagination ( 'Comment_zt', $where );
@@ -364,108 +371,132 @@ class CenterController extends HomeBaseController {
 			}
 		}
 	}
-
-	//我的小组
-	public function group(){
+	
+	// 我的小组
+	public function group() {
 		$uid = $_SESSION ["MEMBER_id"];
-		$gids = M('GroupExtend')->where("uid=%d",array($uid))->getField('gid',true);
-		$map['id'] = array('in',$gids);
-		$group = M('Group')->where($map)->select();
-		$this->assign('group',$group);
-		$this->display('Member:group');
+		$gids = M ( 'GroupExtend' )->where ( "uid=%d", array (
+				$uid 
+		) )->getField ( 'gid', true );
+		$map ['id'] = array (
+				'in',
+				$gids 
+		);
+		$group = M ( 'Group' )->where ( $map )->select ();
+		$this->assign ( 'group', $group );
+		$this->display ( 'Member:group' );
 	}
-
-	//创建小组
-	public function build_group(){
+	
+	// 创建小组
+	public function build_group() {
 		$uid = $_SESSION ["MEMBER_id"];
-		if(IS_POST){
-			if(M('Members')->where("ID=%d",array($uid))->getField('group') < 4){
-				$this->error('需要P3及以上用户才能创建');
+		if (IS_POST) {
+			if (M ( 'Members' )->where ( "ID=%d", array (
+					$uid 
+			) )->getField ( 'group' ) < 4) {
+				$this->error ( '需要P3及以上用户才能创建' );
 			}
-			if($_FILES['img']==''){
-				$this->error('小组图标不能为空');
+			if ($_FILES ['img'] == '') {
+				$this->error ( '小组图标不能为空' );
 			}
-			if(I('post.name')==''){
-				$this->error('小组名称不能为空');
+			if (I ( 'post.name' ) == '') {
+				$this->error ( '小组名称不能为空' );
 			}
-			if(I('post.cid')==''){
-				$this->error('小组分类必须选择');
+			if (I ( 'post.cid' ) == '') {
+				$this->error ( '小组分类必须选择' );
 			}
-
-			$upload = new \Think\Upload();
-			$upload->maxSize = 3145728;
-			$upload->exts = array('jpg', 'gif', 'png', 'jpeg');
-			$upload->rootPath ='./Uploads/';
-			$upload->savePath = date('Ymd',time);
-			$info = $upload->upload();
-			if(!$info) {
-				$this->error($upload->getError());
-			}
-			if(M('Group')->where("name='%s'",array(I('post.name')))->count() > 0){
-				$this->error('小组名已存在');
-			}
-			$gid = M('Group')->add(array(
-					'uid' => $uid,
-					'img' => '/Uploads/'.$info['img']['savepath'].$info['img']['savename'],
-					'cid' => I('post.cid'),
-					'name' => I('post.name'),
-					'chcek' => 1,
-					'dateline'=>time(),
-				));
 			
-				$result = M('GroupExtend')->add(array(
-						'uid' => $uid,
-						'gid' => $gid,
-						'chcek' => 1
-					));
-			if($result){
-				$this->success('创建成功！');
-			}else{
-				$this->error('创建小组失败！');
+			$upload = new \Think\Upload ();
+			$upload->maxSize = 3145728;
+			$upload->exts = array (
+					'jpg',
+					'gif',
+					'png',
+					'jpeg' 
+			);
+			$upload->rootPath = './Uploads/';
+			$upload->savePath = date ( 'Ymd', time );
+			$info = $upload->upload ();
+			if (! $info) {
+				$this->error ( $upload->getError () );
 			}
-		}else{
-			$_class = M('GroupClass')->select();
-			$this->assign('_class',$_class);
-			$this->display('Member:build_group');
+			if (M ( 'Group' )->where ( "name='%s'", array (
+					I ( 'post.name' ) 
+			) )->count () > 0) {
+				$this->error ( '小组名已存在' );
+			}
+			$gid = M ( 'Group' )->add ( array (
+					'uid' => $uid,
+					'img' => '/Uploads/' . $info ['img'] ['savepath'] . $info ['img'] ['savename'],
+					'cid' => I ( 'post.cid' ),
+					'name' => I ( 'post.name' ),
+					'chcek' => 1,
+					'dateline' => time () 
+			) );
+			
+			$result = M ( 'GroupExtend' )->add ( array (
+					'uid' => $uid,
+					'gid' => $gid,
+					'chcek' => 1 
+			) );
+			if ($result) {
+				$this->success ( '创建成功！' );
+			} else {
+				$this->error ( '创建小组失败！' );
+			}
+		} else {
+			$_class = M ( 'GroupClass' )->select ();
+			$this->assign ( '_class', $_class );
+			$this->display ( 'Member:build_group' );
 		}
 	}
 	
-	/********
-	 * 积分  红途币   查询
-	 * ********/
-	public function integral(){
+	/**
+	 * ******
+	 * 积分 红途币 查询
+	 * *******
+	 */
+	public function integral() {
 		$uid = $_SESSION ["MEMBER_id"];
-		//查询
-		$tab = I('get.tab');
+		// 查询
+		$tab = I ( 'get.tab' );
 		switch ($tab) {
 			case 'integral' : // 积分
-				$where['user'] = $uid;
-				$where['integral'] = array('gt','0');
-				$this->rows = M('integrals_record')->where($where)->select();
+				$where ['user'] = $uid;
+				$where ['integral'] = array (
+						'gt',
+						'0' 
+				);
+				$this->rows = M ( 'integrals_record' )->where ( $where )->select ();
 				break;
-			case 'coin' : //红途币
-				$where['user'] = $uid;
-				$where['coin'] = array('gt','0');
-				$this->rows = M('integrals_record')->where($where)->select();
+			case 'coin' : // 红途币
+				$where ['user'] = $uid;
+				$where ['coin'] = array (
+						'gt',
+						'0' 
+				);
+				$this->rows = M ( 'integrals_record' )->where ( $where )->select ();
 				break;
 			default : // 积分
-				$where['user'] = $uid;
-				$where['integral'] = array('gt','0');
-				$this->rows = M('integrals_record')->where($where)->select();
+				$where ['user'] = $uid;
+				$where ['integral'] = array (
+						'gt',
+						'0' 
+				);
+				$this->rows = M ( 'integrals_record' )->where ( $where )->select ();
 				break;
 		}
-		$this->display('Member:integral');
+		$this->display ( 'Member:integral' );
 	}
 	
-	//签到，添加积分
-	function add_jf(){
-		$op = I('qiandao');
-		if($_SESSION['qiandao'] != 1){
-			echo $this->integrals($op);
-			$_SESSION['qiandao'] = 1;
-		}else{
+	// 签到，添加积分
+	function add_jf() {
+		$op = I ( 'qiandao' );
+		if ($_SESSION ['qiandao'] != 1) {
+			echo $this->integrals ( $op );
+			$_SESSION ['qiandao'] = 1;
+		} else {
 			echo 0;
 		}
-		
 	}
 }

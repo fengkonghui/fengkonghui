@@ -130,11 +130,21 @@
 			</foreach>
 		</div>
 		<div class="read_content">
-			<foreach name="read1" item="read1">
+			<foreach name="read1" item="read">
 			<div class="read_content1">
-				<a href="{:U('zhuanti/pdfTuijian',array('ty_id'=>$read1[ID]))}"><img
-					src="{$read1.tj_img}" /></a>
-				<div class="level">{$read.price}</div>
+				<a href="{:U('zhuanti/pdfTuijian',array('ty_id'=>$read[ID]))}">
+					<img src="{$read.tj_img}" />
+				</a>
+				<switch name="read.class"> <case value="2">
+				<div class="level to1">机构</div>
+				</case> <case value="3"> <if
+					condition="getMemberField('group') lt $read['group']">
+				<div class="level to3">{$read.price}红途币</div>
+				<else />
+				<div class="level to2">{:getGroupName($read['group'])}可阅</div>
+				</if> </case> <default />
+				<div class="level">免费</div>
+				</switch>
 				<div class="title">{$read.title}</div>
 			</div>
 			</foreach>

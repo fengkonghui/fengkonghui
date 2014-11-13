@@ -352,10 +352,18 @@ class MemberController extends HomeBaseController {
 		$memid = I ( 'get.uid' );
 		$tab = I ( 'get.tab' );
 		$myanswer = array ();
-		$where ['user_id'] = array (
-				'eq',
-				$memid
-		);
+		if($tab=='debate'){
+			$where ['postby'] = array (
+					'eq',
+					$memid
+			);
+		}else{
+			$where ['user_id'] = array (
+					'eq',
+					$memid
+			);
+		}
+		
 		switch ($tab) {
 			case 'technology' : // 技术
 				$result = $this->getPagination ( 'Comment_zt', $where );

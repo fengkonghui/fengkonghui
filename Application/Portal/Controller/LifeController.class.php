@@ -294,9 +294,14 @@ class LifeController extends HomeBaseController {
 					if($Keywords!=''){
 						$map['content'] = array('like','%'.$Keywords.'%');
 					}
-					$count = M('Ask')->where($map)->order($order)->limit(6)->count();
+					$count = M('Ask')->where($map)->count();
 					$page = $this->page ( $count, 6 , 1);
-					$ask = M('Ask')->where($map)->limit ( I('post.page') . ',6' )->order($order)->select();
+					if(I('post.page')>0){
+						$p = (I('post.page')-1)*6;
+					}else{
+						$p = I('post.page')*6;
+					}
+					$ask = M('Ask')->where($map)->limit (  $p . ',6' )->order($order)->select();
 					foreach ($ask as &$v) {
 						$v['num'] = M('Ask')->where('aid=%d',array($v['id']))->count();
 						$v['nicename'] = getMemberField('user_nickname',$v['uid']);
