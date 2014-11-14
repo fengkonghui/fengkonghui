@@ -21,10 +21,12 @@ class MemberController extends HomeBaseController {
 			$this->error ( "验证码错误！" );
 		} else {
 			if ($type == 'personal') {
-				$da = array (
-						'user_tel' => $user_login_name,
-						'type' => $type 
-				);
+				if(strpos($user_login_name,'@')!==false){
+					$da['user_email'] = array('eq',$user_login_name);
+				}else{
+					$da['user_tel'] = array('eq',$user_login_name);
+				}
+				$da['type'] = array('eq',$type);
 				$goto = U ( "portal/xdal/index" );
 			} else if ($type == 'enterprise') {
 				$da = array (
@@ -53,7 +55,7 @@ class MemberController extends HomeBaseController {
 					M ( 'Members' )->where ( array (
 							'ID' => $result ["ID"] 
 					) )->save ( $data );
-					$this->integrals ( 'login' );
+					// $this->integrals ( 'login' );
 					$this->success ( "登录验证成功！", $goto );
 				} else {
 					$this->error ( "密码错误！" );
@@ -76,18 +78,31 @@ class MemberController extends HomeBaseController {
 	/**
 	 * 生成验证码
 	 */
-	public function sendPhone() {
+	public function sendphone() {
 		// 检查是否已经注册
 		$phone = I ( 'get.phone' );
-		$has = M ( 'Members' )->where ( array (
-				'user_tel' => $phone 
-		) )->count ();
+		$email = I ( 'get.email' );
+		$type = I ('get.type');
+
+		if($type){
+			$map['user_tel'] = array('eq',$phone);
+			$info = '手机';
+		}else{
+			$map['user_email'] = array('eq',$email);
+			$info = '邮箱';
+		}
+		$has = M ( 'Members' )->where ($map)->count ();
 		if ($has) {
-			$this->error ( "手机号已注册" );
+			$this->error ( $info."已注册" );
 		} else {
 			// 随机码
 			$code = rand ( 100000, 999999 );
-			if ($this->sendMESSAGES ( $phone, '【' . C ( 'SENDSMS' ) . '】您的验证码为：' . $code )) {
+			if($type){
+				$result = $this->sendMESSAGES ( $phone, '【' . C ( 'SENDSMS' ) . '】您的验证码为：' . $code );
+			}else{
+				$result = SendMail($email,'【' . C ( 'SENDSMS' ) . '】校验码','您的验证码为：'.$code);
+			}
+			if ($result) {
 				session ( 'tel_yz', $code );
 				$this->success ( "发送成功！" );
 			} else {
@@ -115,13 +130,14 @@ class MemberController extends HomeBaseController {
 		} else if (strlen ( $pass ) < 5 || strlen ( $pass ) > 12) {
 			$this->error ( "密码长度至少5位，最多12位！" );
 		} else if ($user_tel_yz != session ( 'tel_yz' )) {
-			$this->error ( "手机验证码输入错误或者过期" );
+			$this->error ( "校验码输入错误或者过期" );
 		} else {
 			// 注册个人用户条件
 			if ($type == 'personal') {
 				$da = array (
 						'user_login_name' => $user_login_name,
 						'user_tel' => $user_tel,
+						'user_email' => $user_email,
 						'_logic' => 'OR' 
 				);
 				$goto = U ( "portal/xdal/index" );
@@ -133,7 +149,7 @@ class MemberController extends HomeBaseController {
 			}
 			$result = M ( 'Members' )->where ( $da )->count ();
 			if ($result) {
-				$this->error ( "用户名或者该手机号已经存在！" );
+				$this->error ( "邮箱或者该手机号已经存在！" );
 			} else {
 				/*
 				 * $data = array( //'user_login_name'	 => $name, //'user_email'		 => $email, 'user_pass'			 => encode($pass, C('DATA_AUTH_KEY')), 'last_login_ip'		 => get_client_ip(), 'create_time'		 => time(), 'last_login_time'	 => time(), 'user_status'		 => '1', );
@@ -148,6 +164,7 @@ class MemberController extends HomeBaseController {
 							'user_nickname' => $user_login_name,
 							'user_login_name' => $user_login_name,
 							'user_tel' => $user_tel,
+							'user_email' => $user_email,
 							'user_post_level' => $user_post_level,
 							'user_yq' => $user_yq,
 							'user_city' => $user_city,
@@ -182,7 +199,7 @@ class MemberController extends HomeBaseController {
 				$_SESSION ["MEMBER_name"] = $user_login_name;
 				$_SESSION ["MEMBER_etype"] = $type;
 				$_SESSION ["type"] = $type;
-				$this->integrals ( 'registration' );
+				// $this->integrals ( 'registration' );
 				$this->success ( "注册成功！", $goto );
 			}
 		}

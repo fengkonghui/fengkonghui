@@ -27,22 +27,31 @@
 						maxlength="15" /></td>
 				</tr>
 				<tr>
+					<td class="reg_table_right">注册类型</td>
+					<td>
+						<input type="radio" value="1" checked="checked" id="ischange" name="types"/>手机 <input type="radio" value="0" id="ischange" name="types"/>邮箱
+					</td>
+				</tr>
+				<tr id="phone">
 					<td class="reg_table_right">手机号</td>
 					<td><input type="text" name="user_tel" maxlength="11"
 						class="reg_input reg_tel" /> <input type="button"
 						name="phone_fake" value="发送验证" class="reg_but sentsms"
 						placeholder="请输入11位手机号"></td>
 				</tr>
+				<tr id="email" style="display:none">
+					<td class="reg_table_right">邮箱</td>
+					<td><input type="text" name="user_email"
+						class="reg_input reg_tel" /> <input type="button"
+						name="phone_fake" value="发送验证" class="reg_but sentsms"
+						placeholder="请输入11位手机号"></td>
+				</tr>
 				<tr>
-					<td class="reg_table_right">短信验证码</td>
+					<td class="reg_table_right">校验码</td>
 					<td><input type="text" name="user_tel_yz"
 						class="reg_input reg_yz"
 						onkeyup="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)"
 						onblur="this.v();" maxlength="6" /></td>
-				</tr>
-				<tr>
-					<td class="reg_table_right">邮箱</td>
-					<td><input type="text" name="user_emaile" class="reg_input reg_yz" /></td>
 				</tr>
 			</table>
 			<table class="reg_right">
@@ -102,6 +111,18 @@
 </block>
 
 <block name="script"> <script type="text/javascript">
+$(function(){
+	$(":radio").click(function() {
+		var type = $(this).val();
+		if(type==1){
+			$("#phone").show();
+			$("#email").hide();
+		}else{
+			$("#phone").hide();
+			$("#email").show();
+		}
+	});
+}); 
 	jQuery.extend(jQuery.validator.messages, {
 		required : "必填字段",
 		remote : "请修正该字段",
@@ -136,11 +157,6 @@
 				minlength: 6,
 				equalTo: "#pass"
 			},
-			user_tel: {
-				required: true,
-				minlength: 11,
-			    digits: true
-			},
 			user_tel_yz: {
 				required: true,
 				minlength: 6,
@@ -154,15 +170,20 @@
         if (btn.val() != '发送验证') {
             return ;
         }
-        var phone = $('input[name=user_tel]').val();
-        var myreg = /^13[\d]{9}$|14^[0-9]\d{8}|^15[0-9]\d{8}$|^18[0-9]\d{8}$/;
-        if(!myreg.test(phone)){
+        var phone = $('input[name=user_tel]').val(),
+        	email = $('input[name=user_email]').val(),
+        	type = $("input[name='types']:checked").val(),
+        	myreg = /^13[\d]{9}$|14^[0-9]\d{8}|^15[0-9]\d{8}$|^18[0-9]\d{8}$/,
+        	myema = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
+        if(!myreg.test(phone) && type==1){
            alert('请输入有效的手机号码！');return false;
+        }else if(!myema.test(email)){
+        	alert('请输入有效的邮箱！');return false;
         }
 
         $.ajax({
             url:'{:U('Member/sendPhone')}',
-            data:{'phone':phone},
+            data:{'phone':phone,'email':email,'type':type},
             dataType:'json',
             beforeSend:function(){
                  btn.val('获取中...');
