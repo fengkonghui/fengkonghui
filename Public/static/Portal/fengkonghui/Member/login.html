@@ -15,8 +15,8 @@
 		<form id="login" action="{:U('Member/dologin')}" method="post">
 			<input type="hidden" name="type" value="personal" />
 			<div class="login_row">
-				<span>手机号/邮箱</span> <br /> <input type="text" name="user_login_name"
-					class="login_input" />
+				<span>手机号</span> <br /> <input type="text" name="user_login_name"
+					class="login_input" maxlength="11" />
 			</div>
 			<div class="login_row">
 				<span>密码</span> <br /> <input type="password" name="passwd"

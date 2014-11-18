@@ -23,15 +23,6 @@ return array(
 	'TMPL_ACTION_SUCCESS' => APP_PATH . 'Common/Tpl/dispatch_jump.tpl',
 	// 'TMPL_EXCEPTION_FILE' => APP_PATH . 'Common/Tpl/app_exception.tpl'
 	'SENDSMS' => '红途风控汇',
-
-	'SMTP_SERVER' => 'smtp.mxhichina.com',
-	'SMTP_PORT' => '465',
-	'MAIL_AUTH' => 'true',
-	'SMTP_USER' => 'message',
-	'MAIL_PASSWORD' => 'Hermes1455',
-	'SEND_EMAIL' => 'message@hongtuwang.com',
-	'MAIL_NICKNAME' => '红途风控汇',
-	'MAIL_SIGN' => '<br/><br/><hr />保密声明：<br/>此电子邮件（包括附件）可能包含机密及/或专有信息， 仅对收到该邮件的人或实体方有权使用。如果阅读此封电子邮件的人不是预期收件人或其授权代理，特此通知该人不得传播、分发或复制该电子邮件。如果您误收到此电子邮件，请回复该邮件通知发件人，并立即删除该电子邮件。',
 	
 	/**
 	 * ****************************************************

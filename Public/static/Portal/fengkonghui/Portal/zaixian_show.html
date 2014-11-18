@@ -1,0 +1,99 @@
+﻿<extend name="Public/main" />
+<!-- content -->
+<block name="body">
+		<div class="fkzx_content">
+			<div class="spec_title">
+				<div>&nbsp;</div>
+				<h2>风控解答</h2>
+				<div>&nbsp;</div>
+			</div>
+			<div class="fkzx_cont">
+
+				<div class="fkzx_cont_center">
+					<div class="spec_rig_top fkzx_title">
+						<h2>在线风控解答</h2>
+						<div>&nbsp;</div>
+					</div>
+					<volist name="pinglun" id="vo">
+					<div class="fkzx_jilu">
+						<div class="fkzx_tx"><img src="{:avatars($vo['user_id'])}" /></div>
+						<div class="fkzx_neirong">
+							<p class="fkzx_name">{$vo.user_id|getName}<span>2014-12-15</span></p>
+							<p>{$vo.content}</p>
+							<p class="fkzx_huifu"><a class="reply_btn" href="javascript:void(0));"><img
+					src="__TMPL__/Public/img/img_01.png" />&nbsp;回复</a>&nbsp;&nbsp;<a
+					class="open" href="javascript:void(0));"><span class="tihuan">展开</span><span
+					class="num">({$vo.num})</span></a></p>
+								<div class="reply reply_huifu" style="display: none;">
+				<form action="{:U('zhuanti/zhuanti_pinglun')}" method="post"
+					class="replycheck xiangqing_sub">
+					<input type="hidden" name="replyfor" value="{$vo.id}"> <input
+						type="hidden" name="credit_id" value="{$id}" />
+					<textarea name="content" class="" required="required"></textarea>
+					<div
+						style="text-align: right; margin-top: 10px; margin-bottom: 10px;">
+						<input type="submit" class="" name="sub" value="回复">
+					</div>
+				</form>
+			</div>
+						</div>
+					</div>
+					</volist>
+			<volist name="vo[replyfor]" id="vo1">
+			<div class="jishu_cont1 pinglun_01 pinglun_001"
+				style="display: none;">
+				<div class="touxiang">
+					<img src="{:avatars($vo1['user_id'])}" />
+				</div>
+				<p>{$vo1.user_id|getName}</p>
+				<p>{$vo1.content}</p>
+			</div>
+			</volist>
+
+					
+				</div>
+				<div class="fkzx_cont_right">
+					<div class="spec_rig_top fkzx_tw">
+						<h2>我来提问</h2>
+						<div>&nbsp;</div>
+					</div>
+					<form action="post" method="post">
+						<textarea rows="" cols="">
+						
+						</textarea>
+						<input type="submit" name="sub" value="提问" /> 
+					</form>
+
+				</div>
+			</div>
+		</div>
+</block>
+
+<block name="script"> <script type="text/javascript">
+	$('.reply_btn').click(function() {
+		$(this).parent().siblings('.reply').toggle();
+	});
+	$('.open').click(function() {
+		if ($(this).parent().siblings('.pinglun_001').is(':hidden')) {
+			$(this).parent().siblings('.pinglun_001').show();
+			$(this).find('.tihuan').text('收起');
+			$(this).find('.num').hide();
+		} else {
+			$(this).parent().siblings('.pinglun_001').hide();
+			$(this).find('.tihuan').text('展开');
+			$(this).find('.num').show();
+		}
+	});
+	jQuery.extend(jQuery.validator.messages, {
+		required : "必填字段",
+	});
+	$('.replycheck').each(function() {
+		$(this).validate({});
+	});
+</script> </block>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F934437330fe78c87e114dbb1f21ff0ad' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>

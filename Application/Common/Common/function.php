@@ -699,28 +699,4 @@ function http_build_query_multi($params, $boundary) {
     return $multipartbody;
 }
 
-/**
- * 邮件发送
- * @param [type] $address [收件人]
- * @param [type] $title   [标题]
- * @param [type] $message [内容]
- */
-function SendMail($address, $title, $message) {
-    Vendor("PHPMailer.PHPMailerAutoload");
-    $mail = new PHPMailer();
-    $mail->IsSMTP();
-    $mail->CharSet = 'UTF-8';
-    $mail->AddAddress($address);
-    $mail->Body = $message.C('MAIL_SIGN');
-    $mail->From = C('SEND_EMAIL');
-    $mail->FromName = C('MAIL_NICKNAME');
-    $mail->Subject = $title;
-    $mail->Host = C('SMTP_SERVER');
-    $mail->Port = C('SMTP_PORT');
-    $mail->SMTPAuth = C('MAIL_AUTH');
-    $mail->Username = C('SMTP_USER');
-    $mail->Password = C('MAIL_PASSWORD');
-    $mail->IsHTML(true);
-    return ($mail->Send());
-}
 
