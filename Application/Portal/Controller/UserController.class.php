@@ -93,11 +93,11 @@ class UserController extends HomeBaseController {
 
         $auth = M('Auth');
         $result = $auth->where("openid='%s'",array($openid))->find();
-        if(empty($result) || $result['uid']>0 || empty($result['mobile'])){
+        if(empty($result) || $result['uid']>0){
             $this->redirect('/Portal/Member/index');
         }
 
-        $_info = M('Members')->where("user_tel='%s'",array($result['mobile']))->find();
+        $_info = M('Members')->where("user_login_name='%s'",array(I('post.nike')))->find();
 
         if(!empty($_info)){
             $auth->where("openid='%s'",array($openid))->save(array('uid'=>$_info['ID']));
@@ -106,7 +106,7 @@ class UserController extends HomeBaseController {
             $data['create_time'] = time();
             $data['user_login_name'] = I('post.nike');
             $data['group'] = 2;
-            $data['type'] = 'enterprise';
+            $data['type'] = 'personal';
             $data['last_login_time'] = time();
             $data['last_login_ip'] = get_client_ip();
             $ids = M('Members')->add($data);
