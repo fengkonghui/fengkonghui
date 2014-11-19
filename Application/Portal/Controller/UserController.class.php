@@ -86,9 +86,6 @@ class UserController extends HomeBaseController {
 
     //提交
     public function submit(){
-        if(I('post.code') != session ( 'mobile-code') ){
-            $this->error ( '验证码错误，请重新输入' );
-        }
         $openid = session('openid');
         if($openid==''){
             $this->redirect('/Portal/Member/index');
@@ -107,6 +104,7 @@ class UserController extends HomeBaseController {
         }else{
             $data['user_tel'] = $result['mobile'];
             $data['create_time'] = time();
+            $data['user_login_name'] = I('post.nike');
             $data['group'] = 2;
             $data['type'] = 'enterprise';
             $data['last_login_time'] = time();

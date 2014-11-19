@@ -6,7 +6,7 @@
 		<div class="auth-nickname clearfix">
 			<span><em>Hi,{$nickname}</em>欢迎使用{$type}登录，来到风控汇！</span>
 			<div class="tit">
-				<h2>手机认证</h2>
+				<h2>请输入昵称</h2>
 			</div>
 		</div>
 	</div>
@@ -14,15 +14,9 @@
 	<form class="auth-form clearfix" action="{:U('/Portal/user/submit')}" method="post">
 		<ul>
 			<li>
-				<label>手机号码：</label>
-				<input type="text" class="txt" name="mobile">
+				<label>用户昵称：</label>
+				<input type="text" class="txt" name="nike">
 				<span class="mobile-error"></span>
-			</li>
-			<li>
-				<label>验证码：</label>
-				<input type="text" class="txt" name="code" style="width:125px;">
-				<a href="javascript://" class="gain-code">获取验证码</a>
-				<span class="mobile-code"></span>
 			</li>
 			<li>
 				<label></label>
@@ -39,7 +33,8 @@
 </block>
 <block name="script">
 <script type="text/javascript">
-$(function() {
+
+/* $(function() {
 	var count_down = function(){
 	    var obj = $(".gain-code");
 	    var cur_time = 60;
@@ -126,6 +121,6 @@ function isMobil(s){
 	var patrn = /^13[\d]{9}$|14^[0-9]\d{8}|^15[0-9]\d{8}$|^18[0-9]\d{8}$/;
 	if (!patrn.test(s)){return false;}
 	return true;
-} 
+}  */
 </script>
 </block>
