@@ -42,7 +42,7 @@
 							<span class="nickname">
 								<a href="{:U('/Portal/member/user',array('uid'=>$vo['uid']))}" target="_blank">{:getMemberField('user_nickname',$vo['uid'])}</a>
 								<if condition="$auth_group neq 0">
-								<a href="javascript://" class="kick" data-uid="{$vo.uid}" data-gid="{$vo.gid}" title="踢出-{:getMemberField('user_nickname',$vo['uid'])}">踢</a>
+								<a href="javascript://" class="kick queren" data-uid="{$vo.uid}" data-gid="{$vo.gid}" title="踢出-{:getMemberField('user_nickname',$vo['uid'])}"><if condition="$vo[uid] neq $uid">踢</if></a>
 								</if>
 							</span>
 							<span>
@@ -63,6 +63,11 @@
 $(function(){
 	//退出小组
 	$(".team-user .nickname .kick").click(function(){
+		if(confirm('确定踢出？')){
+			return true;
+		}else{
+			return false;
+		}
 		var kick = $(this);
 		var uid = kick.data('uid');
 		var gid = kick.data('gid');
@@ -71,6 +76,5 @@ $(function(){
 		}, "json");
 	});
 })
-
 </script>
 </block>

@@ -15,9 +15,8 @@ class ApiController extends AdminbaseController {
 
 	//用户列表
 	function index() {
-		$rst = M('OauthMember')->where("status=1")->select();
+		$rst = M('auth')->select();
 		$this->assign('lists', $rst);
-		//dump($rst);die;
 		$this->display();
 	}
 
@@ -25,7 +24,7 @@ class ApiController extends AdminbaseController {
 	function delete() {
 		$id = intval($_GET['id']);
 		if ($id) {
-			$rst = M("OauthMember")->where("status=1 and ID=$id")->setField('status', '0');
+			$rst = M("auth")->where("id=$id")->delete();
 			if ($rst) {
 				$this->success("保存成功！", U("api/index"));
 			} else {
@@ -36,7 +35,7 @@ class ApiController extends AdminbaseController {
 		}
 	}
 
-	//设置
+	/* //设置
 	function setting() {
 		if ($_POST) {
 			extract($_POST);
@@ -66,6 +65,6 @@ class ApiController extends AdminbaseController {
 			exit;
 		}
 		$this->display();
-	}
+	} */
 
 }

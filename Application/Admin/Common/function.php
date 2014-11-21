@@ -8,6 +8,19 @@ function userName($id){
 			'ID' => $id
 	) )->getField ( 'user_login' );
 }
+//查询头像，如果没有选择默认头像
+function touxiang($id){
+	return M ( 'members' )->where ( array (
+			'id' => $id
+	) )->getField ( 'user_login_name' );
+}
+
+//查询用户名
+function membern($id){
+	return M ( 'members' )->where ( array (
+			'id' => $id
+	) )->getField ( 'user_login_name' );
+}
 
 //查询文章分类名
 function articlesType($id){

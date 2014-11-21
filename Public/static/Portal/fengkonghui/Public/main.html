@@ -18,11 +18,11 @@
 <body>
 	<include file="Public:header" />
 	<div class="content">
+	<input type="hidden" value="{$Think.session.MEMBER_id}" id="uid" />
 		<div class="center">
 			<block name="body"></block>
 		</div>
 	</div>
-	<include file="Public:footer" />
 	<block name="popup"></block>
 	<block name="script"></block>
 	{$site_tongji}

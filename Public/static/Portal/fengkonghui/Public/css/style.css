@@ -3200,3 +3200,9 @@ table .bor_none td {
 .hide{
 	display: none;
 }
+.technical .technical_content .title {
+position: absolute;
+bottom: -35px;
+background-color: #FFF;
+width: 100%;
+}

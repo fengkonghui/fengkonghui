@@ -75,9 +75,9 @@ class LifeController extends HomeBaseController {
 			$data['pid'] = I('post.replyfor') ? I('post.replyfor') : '0';
 			if (M ( 'NewsComment' )->add ($data)) {
 				$this->integrals('comment');
-				$this->success ( '评论成功' );
+				$this->success ( '评论成功','',0 );
 			} else {
-				$this->error ( '评论失败' );
+				$this->error ( '评论失败','',0 );
 			}
 		}
 	}
@@ -129,6 +129,7 @@ class LifeController extends HomeBaseController {
 		$this->assign('_list',$_list);
 		$this->assign('page',$Page->show('Home'));
 		$this->assign('_user',$_user);
+		$this->assign('uid',$uid);
 		$this->assign('auth_group',$auth_group);
 		$this->display();
 	}
@@ -209,9 +210,9 @@ class LifeController extends HomeBaseController {
 			$data['pid'] = I('post.replyfor') ? I('post.replyfor') : '0';
 			if (M ( 'GroupComment' )->add ($data)) {
 				$this->integrals('comment');
-				$this->success ( '评论成功' );
+				$this->success ( '评论成功','',0 );
 			} else {
-				$this->error ( '评论失败' );
+				$this->error ( '评论失败','',0  );
 			}
 		}
 	}
@@ -233,9 +234,9 @@ class LifeController extends HomeBaseController {
 			$data['pid'] = I('post.replyfor') ? I('post.replyfor') : '0';
 			if (M ( 'ArticlesComment' )->add ($data)) {
 				$this->integrals('comment');
-				$this->success ( '评论成功' );
+				$this->success ( '评论成功' ,'',0);
 			} else {
-				$this->error ( '评论失败' );
+				$this->error ( '评论失败','',0 );
 			}
 		}
 	}
@@ -263,7 +264,7 @@ class LifeController extends HomeBaseController {
 					if(!$id){
 						$this->error('网络异常，请刷新后重试！');
 					}
-					$content = I('post.content','','strip_tags');
+					$content = nl2br(I('post.content','','strip_tags'));
 					if(empty($content)){
 						$this->error('回复内容不能为空');
 					}
@@ -276,9 +277,9 @@ class LifeController extends HomeBaseController {
 						));
 					if($result){
 						$this->integrals('respond_comment');
-						$this->success ( "回复成功！", U ( "/Portal/life/index" ) );
+						$this->success ( "回复成功！", U ( "/Portal/life/index" ),0 );
 					}else{
-						$this->error('回复失败');
+						$this->error('回复失败','',0);
 					}
 				break;
 			case 'ask'://遍历问答

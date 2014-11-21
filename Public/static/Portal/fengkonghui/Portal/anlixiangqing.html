@@ -26,7 +26,7 @@
 
 	<form class="replycheck" method="post" action="{:U('xindai/pinglun')}">
 		<div class="pinglun_text">
-			<textarea name="content" required="required"></textarea>
+			<textarea name="content" class="login-pd" required="required"></textarea>
 		</div>
 		<input type="hidden" name="credit_id" value="{$id}" />
 		<div class="pinglun_sub">
@@ -56,7 +56,7 @@
 					class="replycheck xiangqing_sub">
 					<input type="hidden" name="replyfor" value="{$vo.id}"> <input
 						type="hidden" name="credit_id" value="{$id}" />
-					<textarea name="content" class="" required="required"></textarea>
+					<textarea name="content" class="login-pd" required="required"></textarea>
 					<div
 						style="text-align: right; margin-top: 10px; margin-bottom: 10px;">
 						<input type="submit" class="" name="sub" value="回复">
